@@ -33,7 +33,7 @@ Partial Class Form1
         '
         Me.pbCanvas.Location = New System.Drawing.Point(13, 13)
         Me.pbCanvas.Name = "pbCanvas"
-        Me.pbCanvas.Size = New System.Drawing.Size(580, 425)
+        Me.pbCanvas.Size = New System.Drawing.Size(600, 400)
         Me.pbCanvas.TabIndex = 0
         Me.pbCanvas.TabStop = False
         '

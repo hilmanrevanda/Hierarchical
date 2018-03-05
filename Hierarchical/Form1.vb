@@ -1,6 +1,17 @@
 ﻿Public Class Form1
-    Dim BMP As New Drawing.Bitmap(650, 400)
+    Dim BMP As New Drawing.Bitmap(600, 400)
     Dim GFX As Graphics = Graphics.FromImage(BMP)
+    Public startP, endP As Point
+    Dim Pen = New Pen(Color.Black)
+    Dim FrontPen = New Pen(Color.Red)
+    Public Base As ElmtList3DObject
+
+    Sub SetColMatrix(ByRef mx(,) As Double, ByVal col As Integer, ByVal a As Double, ByVal b As Double, ByVal c As Double, ByVal d As Double)
+        mx(0, col) = a
+        mx(1, col) = b
+        mx(2, col) = c
+        mx(3, col) = d
+    End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
