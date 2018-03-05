@@ -1,27 +1,34 @@
 ﻿Public Class Form1
-    Dim cos30 As Double = 0.86602540378
-    Dim sin45 As Double = 0.70710678118
+    Private Const cos30 = 0.86602540378
+    Private Const sin45 = 0.70710678118
+
     Dim btp As Bitmap
     Dim g As Graphics
+
     Public v, vr, vs As List(Of Tpoint)
     Dim view(3, 3), screen(3, 3) As Double
     Dim edge As List(Of LineIndex)
     Dim degree As Integer = 0
 
-    Function multiplication(origin As List(Of Tpoint), multiplier(,) As Double) As List(Of Tpoint)
-        Dim result As List(Of Tpoint) = New List(Of Tpoint)
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        degree += 2
+        view(1, 0) = sin45 * Math.Sin(degree * Math.PI / 180)
+        view(1, 1) = Math.Cos(degree * Math.PI / 180)
+        view(1, 2) = -sin45 * Math.Sin(degree * Math.PI / 180)
+        drawCube()
+    End Sub
 
-        For i = 0 To origin.Count - 1
-            result.Add(New Tpoint(
-                       origin(i).x * multiplier(0, 0) + origin(i).y * multiplier(0, 1) + origin(i).z * multiplier(0, 2) + origin(i).w * multiplier(0, 3),
-                       origin(i).x * multiplier(1, 0) + origin(i).y * multiplier(1, 1) + origin(i).z * multiplier(1, 2) + origin(i).w * multiplier(1, 3),
-                       origin(i).x * multiplier(2, 0) + origin(i).y * multiplier(2, 1) + origin(i).z * multiplier(2, 2) + origin(i).w * multiplier(2, 3),
-                       origin(i).x * multiplier(3, 0) + origin(i).y * multiplier(3, 1) + origin(i).z * multiplier(3, 2) + origin(i).w * multiplier(3, 3)
-            ))
-        Next
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
+        view(1, 0) = sin45 * Math.Sin(TrackBar1.Value * Math.PI / 180)
+        view(1, 1) = Math.Cos(TrackBar1.Value * Math.PI / 180)
+        view(1, 2) = -sin45 * Math.Sin(TrackBar1.Value * Math.PI / 180)
+        drawCube()
+    End Sub
 
-        Return result
-    End Function
+    Private Sub TrackBar2_Scroll(sender As Object, e As EventArgs) Handles TrackBar2.Scroll
+        screen(0, 3) = 200 + TrackBar2.Value
+        drawCube()
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         v = New List(Of Tpoint)
@@ -70,14 +77,32 @@
             {0, 0, 0, 1}
         }
 
-        vr = multiplication(v, view)
-
-        vs = multiplication(vr, screen)
         Timer1.Enabled = False
         drawCube()
     End Sub
 
+    Function multiplication(origin As List(Of Tpoint), multiplier(,) As Double) As List(Of Tpoint)
+        Dim result As List(Of Tpoint) = New List(Of Tpoint)
+
+        For i = 0 To origin.Count - 1
+            result.Add(New Tpoint(
+                       origin(i).x * multiplier(0, 0) + origin(i).y * multiplier(0, 1) + origin(i).z * multiplier(0, 2) + origin(i).w * multiplier(0, 3),
+                       origin(i).x * multiplier(1, 0) + origin(i).y * multiplier(1, 1) + origin(i).z * multiplier(1, 2) + origin(i).w * multiplier(1, 3),
+                       origin(i).x * multiplier(2, 0) + origin(i).y * multiplier(2, 1) + origin(i).z * multiplier(2, 2) + origin(i).w * multiplier(2, 3),
+                       origin(i).x * multiplier(3, 0) + origin(i).y * multiplier(3, 1) + origin(i).z * multiplier(3, 2) + origin(i).w * multiplier(3, 3)
+            ))
+        Next
+
+        Return result
+    End Function
+
     Private Sub drawCube()
+        g.Clear(Color.White)
+
+        vr = multiplication(v, view)
+
+        vs = multiplication(vr, screen)
+
         Dim a, b, c, d As Integer
         For i = 0 To edge.Count - 1
             a = vs(edge(i).p1).x
@@ -109,6 +134,7 @@ Public Class Tpoint
         Me.w = w
     End Sub
 End Class
+
 Public Class LineIndex
     Public p1, p2 As Integer
 
