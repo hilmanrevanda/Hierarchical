@@ -84,7 +84,7 @@
             b = vs(edge(i).p1).y
             c = vs(edge(i).p2).x
             d = vs(edge(i).p2).y
-            If i <= 3 Then
+            If i >= 8 Then
                 g.DrawLine(Pens.Red, a, b, c, d)
             Else
                 g.DrawLine(Pens.Black, a, b, c, d)
