@@ -1,4 +1,19 @@
 ﻿Public Class Form1
+<<<<<<< HEAD
+    Dim BMP As New Drawing.Bitmap(600, 400)
+    Dim GFX As Graphics = Graphics.FromImage(BMP)
+    Public startP, endP As Point
+    Dim Pen = New Pen(Color.Black)
+    Dim FrontPen = New Pen(Color.Red)
+    Public Base As ElmtList3DObject
+
+    Sub SetColMatrix(ByRef mx(,) As Double, ByVal col As Integer, ByVal a As Double, ByVal b As Double, ByVal c As Double, ByVal d As Double)
+        mx(0, col) = a
+        mx(1, col) = b
+        mx(2, col) = c
+        mx(3, col) = d
+    End Sub
+=======
     Dim cos30 As Double = 0.86602540378
     Dim sin45 As Double = 0.70710678118
     Dim btp As Bitmap
@@ -23,6 +38,7 @@
         Return result
     End Function
 
+>>>>>>> aaee961f6f1f2613b139c7feead39798523157d4
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         v = New List(Of Tpoint)
         vr = New List(Of Tpoint)
@@ -56,23 +72,23 @@
         edge.Add(New LineIndex(6, 7)) '11
         edge.Add(New LineIndex(7, 4)) '12
 
-        view = New Double(3, 3) {
+        View = New Double(3, 3) {
             {sin45, 0, sin45, 0},
             {0.5, sin45, -0.5, 0},
             {0, 0, 1, 0},
             {0, 0, 0, 1}
         }
 
-        screen = New Double(3, 3) {
+        Screen = New Double(3, 3) {
             {50, 0, 0, 200},
             {0, -50, 0, 200},
             {0, 0, 0, 0},
             {0, 0, 0, 1}
         }
 
-        vr = multiplication(v, view)
+        vr = multiplication(v, View)
 
-        vs = multiplication(vr, screen)
+        vs = multiplication(vr, Screen)
         Timer1.Enabled = False
         drawCube()
     End Sub
