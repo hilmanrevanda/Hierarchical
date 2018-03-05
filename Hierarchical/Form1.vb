@@ -1,59 +1,140 @@
 ﻿Public Class Form1
-    Dim BMP As New Drawing.Bitmap(600, 400)
-    Dim GFX As Graphics = Graphics.FromImage(BMP)
-    Public startP, endP As Point
-    Dim Pen = New Pen(Color.Black)
-    Dim FrontPen = New Pen(Color.Red)
-    Public Base As ElmtList3DObject
+    Dim cos30 As Double = 0.86602540378
+    Dim sin45 As Double = 0.70710678118
+    Dim btp As Bitmap
+    Dim g As Graphics
+    Public v, vr, vs As List(Of Tpoint)
+    Dim view(3, 3), screen(3, 3) As Double
+    Dim edge As List(Of LineIndex)
+    Dim degree As Integer = 0
 
-    Sub SetColMatrix(ByRef mx(,) As Double, ByVal col As Integer, ByVal a As Double, ByVal b As Double, ByVal c As Double, ByVal d As Double)
-        mx(0, col) = a
-        mx(1, col) = b
-        mx(2, col) = c
-        mx(3, col) = d
-    End Sub
+    Function multiplication(origin As List(Of Tpoint), multiplier(,) As Double) As List(Of Tpoint)
+        Dim result As List(Of Tpoint) = New List(Of Tpoint)
+
+        For i = 0 To origin.Count - 1
+            result.Add(New Tpoint(
+                       origin(i).x * multiplier(0, 0) + origin(i).y * multiplier(0, 1) + origin(i).z * multiplier(0, 2) + origin(i).w * multiplier(0, 3),
+                       origin(i).x * multiplier(1, 0) + origin(i).y * multiplier(1, 1) + origin(i).z * multiplier(1, 2) + origin(i).w * multiplier(1, 3),
+                       origin(i).x * multiplier(2, 0) + origin(i).y * multiplier(2, 1) + origin(i).z * multiplier(2, 2) + origin(i).w * multiplier(2, 3),
+                       origin(i).x * multiplier(3, 0) + origin(i).y * multiplier(3, 1) + origin(i).z * multiplier(3, 2) + origin(i).w * multiplier(3, 3)
+            ))
+        Next
+
+        Return result
+    End Function
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        v = New List(Of Tpoint)
+        vr = New List(Of Tpoint)
+        vs = New List(Of Tpoint)
 
+        edge = New List(Of LineIndex)
+
+        btp = New Bitmap(pbCanvas.Width, pbCanvas.Height)
+        g = Graphics.FromImage(btp)
+        g.Clear(Color.White)
+
+        v.Add(New Tpoint(-1, -1, 1, 1)) '1
+        v.Add(New Tpoint(1, -1, 1, 1)) '2
+        v.Add(New Tpoint(1, -1, -1, 1)) '3
+        v.Add(New Tpoint(-1, -1, -1, 1)) '4
+        v.Add(New Tpoint(-1, 1, 1, 1)) '5
+        v.Add(New Tpoint(1, 1, 1, 1)) '6
+        v.Add(New Tpoint(1, 1, -1, 1)) '7
+        v.Add(New Tpoint(-1, 1, -1, 1)) '8
+
+        edge.Add(New LineIndex(0, 1)) '1
+        edge.Add(New LineIndex(1, 2)) '2
+        edge.Add(New LineIndex(2, 3)) '3
+        edge.Add(New LineIndex(3, 0)) '4
+        edge.Add(New LineIndex(0, 4)) '5
+        edge.Add(New LineIndex(1, 5)) '6
+        edge.Add(New LineIndex(2, 6)) '7
+        edge.Add(New LineIndex(3, 7)) '8
+        edge.Add(New LineIndex(4, 5)) '9
+        edge.Add(New LineIndex(5, 6)) '10
+        edge.Add(New LineIndex(6, 7)) '11
+        edge.Add(New LineIndex(7, 4)) '12
+
+        view = New Double(3, 3) {
+            {sin45, 0, sin45, 0},
+            {0.5, sin45, -0.5, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        }
+
+        screen = New Double(3, 3) {
+            {50, 0, 0, 200},
+            {0, -50, 0, 200},
+            {0, 0, 0, 0},
+            {0, 0, 0, 1}
+        }
+
+        vr = multiplication(v, view)
+
+        vs = multiplication(vr, screen)
+        Timer1.Enabled = False
+        drawCube()
+    End Sub
+
+    Private Sub drawCube()
+        Dim a, b, c, d As Integer
+        For i = 0 To edge.Count - 1
+            a = vs(edge(i).p1).x
+            b = vs(edge(i).p1).y
+            c = vs(edge(i).p2).x
+            d = vs(edge(i).p2).y
+            If i <= 3 Then
+                g.DrawLine(Pens.Red, a, b, c, d)
+            Else
+                g.DrawLine(Pens.Black, a, b, c, d)
+            End If
+        Next
+
+        'test gambar garis x0 y0
+        g.DrawLine(Pens.Black, -100, 0, 100, 0)
+        g.DrawLine(Pens.Black, 0, -100, 0, 100)
+
+        pbCanvas.Image = btp
     End Sub
 End Class
 
-Public Class Point 'coordinates of object in OCS
+Public Class Tpoint
     Public x, y, z, w As Double
-    Sub New(a As Double, b As Double, c As Double, d As Double)
-        x = a
-        y = b
-        z = c
-        w = d 'transformation
+
+    Sub New(x As Double, y As Double, z As Double, w As Double)
+        Me.x = x
+        Me.y = y
+        Me.z = z
+        Me.w = w
+    End Sub
+End Class
+Public Class LineIndex
+    Public p1, p2 As Integer
+
+    Sub New(p1 As Integer, p2 As Integer)
+        Me.p1 = p1
+        Me.p2 = p2
     End Sub
 End Class
 
-Public Class Line 'indexes of start point and end point of the line
-    Public P1, P2 As Integer
-    Sub New(d1 As Integer, d2 As Integer)
-        P1 = d1
-        P2 = d2
-    End Sub
-End Class
+'Public Class Object3D 'Cuboid contains array of vertices and array of edges
+'Public vertices(7) As Point
+'Public edges(11) As Line
+''Sub SetPoint(index As Integer, x As Double, y As Double, z As Double)
+'vertices(index) = New Point(x, y, z, 1)
+'End Sub
+'End Class
 
-Public Class Object3D 'Cuboid contains array of vertices and array of edges
-    Public vertices(7) As Point
-    Public edges(11) As Line
-    Sub SetPoint(index As Integer, x As Double, y As Double, z As Double)
-        vertices(index) = New Point(x, y, z, 1)
-    End Sub
+'Public Class List3DObject
+'Public First As ElmtList3DObject
+'End Class
 
-End Class
-
-Public Class List3DObject
-    Public First As ElmtList3DObject
-End Class
-
-Public Class ElmtList3DObject
-    Public Child As List3DObject
-    Public Nxt As ElmtList3DObject
-    Public Axisrot As Char
-    Public alpha As Double
-    Public Obj As Object3D
-    Public Transform(3, 3) As Double
-
-End Class
+'Public Class ElmtList3DObject
+'Public Child As List3DObject
+'Public Nxt As ElmtList3DObject
+'Public Axisrot As Char
+'Public alpha As Double
+'Public Obj As Object3D
+'Public Transform(3, 3) As Double
+'End Class
