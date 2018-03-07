@@ -19,9 +19,15 @@
     End Sub
 
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        view(1, 0) = sin45 * Math.Sin(TrackBar1.Value * Math.PI / 180)
-        view(1, 1) = Math.Cos(TrackBar1.Value * Math.PI / 180)
-        view(1, 2) = -sin45 * Math.Sin(TrackBar1.Value * Math.PI / 180)
+        Dim MoveForward(3, 3) As Double
+        MoveForward = New Double(3, 3) {
+        {0, 1, 0, 0}, 'cos t sin t 0 0
+        {-1, 0, 0, 0}, '-sin t cos t 0 0
+        {0, 0, 1, 0}, '0 0 1 0
+        {0, 0, 0, 1} '0 0 0 1
+        }
+
+        vr = multiplication(vr, MoveForward)
         drawCube()
     End Sub
 
@@ -66,7 +72,7 @@
         view = New Double(3, 3) {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
-            {0, 0, 1, -0.2},
+            {0, 0, 1, -0.2}, 'cop= 5
             {0, 0, 0, 1}
         }
 
@@ -76,6 +82,10 @@
             {0, 0, 0, 0},
             {0, 0, 0, 1}
         }
+
+        vr = multiplication(v, view)
+
+
 
         Timer1.Enabled = False
         drawCube()
@@ -98,8 +108,6 @@
 
     Private Sub drawCube()
         g.Clear(Color.White)
-
-        vr = multiplication(v, view)
 
         vs = multiplication(vr, screen)
 
