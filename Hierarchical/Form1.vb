@@ -11,29 +11,61 @@
     Dim degree As Integer = 0
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        degree += 2
-        view(1, 1) = sin45 * Math.Sin(degree * Math.PI / 180)
-        view(1, 1) = Math.Cos(degree * Math.PI / 180)
-        view(1, 2) = -sin45 * Math.Sin(degree * Math.PI / 180)
+
+        '        degree += 2
+        '       view(1, 1) = sin45 * Math.Sin(degree * Math.PI / 180)
+        '      view(1, 1) = Math.Cos(degree * Math.PI / 180)
+        '     view(1, 2) = -sin45 * Math.Sin(degree * Math.PI / 180)
         drawCube()
     End Sub
 
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        Dim MoveForward(3, 3) As Double
-        MoveForward = New Double(3, 3) {
+        Dim rotate(3, 3) As Double
+        rotate = New Double(3, 3) {
         {0.86, 0, -0.5, 0},         'cost 0 -sint 0 30
         {0, 1, 0, 0},               '0 1 0 0
         {0.5, 0, 0.86, 0},          'sint 0 cost 0
         {0, 0, 0, 1}                '0 0 0 1
         }
 
-        vr = multiplication(vr, MoveForward)
+        vr = multiplication(vr, rotate)
         drawCube()
     End Sub
 
     Private Sub TrackBar2_Scroll(sender As Object, e As EventArgs) Handles TrackBar2.Scroll
         screen(0, 3) = 200 + TrackBar2.Value
         drawCube()
+    End Sub
+
+    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
+        Dim MoveForward(3, 3) As Double
+        MoveForward = New Double(3, 3) {
+        {1, 0, 0, 0},
+        {0, 1, 0, 0},
+        {0, 0, 0, 0.1},
+        {0, 0, 0, 1}
+        }
+
+        vr = multiplication(vr, MoveForward)
+        Timer1.Enabled = True
+
+    End Sub
+
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
+        Dim MoveBackward(3, 3) As Double
+        MoveBackward = New Double(3, 3) {
+        {1, 0, 0, 0},
+        {0, 1, 0, 0},
+        {0, 0, 0, 0.1},
+        {0, 0, 0, 1}
+        }
+
+        vr = multiplication(vr, MoveBackward)
+        Timer1.Enabled = True
+    End Sub
+
+    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+        Timer1.Enabled = False
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -71,7 +103,7 @@
 
         view = New Double(3, 3) {
             {1, 0, 0, 0},
-            {0, 1, 0, 0},
+            {0, 1, 0, -0.2},
             {0, 0, 1, -0.2}, 'cop= 5
             {0, 0, 0, 1}
         }
@@ -79,15 +111,15 @@
         screen = New Double(3, 3) {
             {50, 0, 0, 200},
             {0, -50, 0, 200},
-            {0, 0, 0, 0},
+            {0, 0, 0, 200},
             {0, 0, 0, 1}
         }
 
         vr = multiplication(v, view)
 
 
-
         Timer1.Enabled = False
+        Timer1.Interval = 100
         drawCube()
     End Sub
 
