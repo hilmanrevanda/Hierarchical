@@ -21,10 +21,10 @@
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
         Dim MoveForward(3, 3) As Double
         MoveForward = New Double(3, 3) {
-        {0, 1, 0, 0}, 'cos t sin t 0 0
-        {-1, 0, 0, 0}, '-sin t cos t 0 0
-        {0, 0, 1, 0}, '0 0 1 0
-        {0, 0, 0, 1} '0 0 0 1
+        {0.86, 0, -0.5, 0},         'cost 0 -sint 0 30
+        {0, 1, 0, 0},               '0 1 0 0
+        {0.5, 0, 0.86, 0},          'sint 0 cost 0
+        {0, 0, 0, 1}                '0 0 0 1
         }
 
         vr = multiplication(vr, MoveForward)
@@ -117,7 +117,7 @@
             b = vs(edge(i).p1).y
             c = vs(edge(i).p2).x
             d = vs(edge(i).p2).y
-            If i >= 8 Then
+            If i = 6 Or i = 7 Or i = 2 Or i = 10 Then
                 g.DrawLine(Pens.Red, a, b, c, d)
             Else
                 g.DrawLine(Pens.Black, a, b, c, d)
