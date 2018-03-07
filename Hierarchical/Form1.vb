@@ -12,7 +12,7 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         degree += 2
-        view(1, 0) = sin45 * Math.Sin(degree * Math.PI / 180)
+        view(1, 1) = sin45 * Math.Sin(degree * Math.PI / 180)
         view(1, 1) = Math.Cos(degree * Math.PI / 180)
         view(1, 2) = -sin45 * Math.Sin(degree * Math.PI / 180)
         drawCube()
@@ -64,9 +64,9 @@
         edge.Add(New LineIndex(7, 4)) '12
 
         view = New Double(3, 3) {
-            {sin45, 0, sin45, 0},
-            {0.5, sin45, -0.5, 0},
-            {0, 0, 1, 0},
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, -0.2},
             {0, 0, 0, 1}
         }
 
