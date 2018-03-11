@@ -7,7 +7,6 @@
 
     Dim degree As Integer = 0
 
-    Dim axis As String
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         'degree += 20
@@ -71,14 +70,80 @@
         g = Graphics.FromImage(btp)
         g.Clear(Color.White)
 
+        'robot1
         Boxes.Add(New Box())
         Boxes.First.scale(50)
-        Boxes.First.translate(200, 200)
+        Boxes.First.translate(200, 200, 0)
+        'right
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(265, 190, 0)
 
         Boxes.Add(New Box())
-        Boxes.Last.scale(20)
-        Boxes.Last.translate(100, 100)
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(265, 220, 0)
 
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(260, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(270, 240, 0)
+        'left
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(135, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(135, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(130, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(140, 240, 0)
+
+
+        'robot2
+        Boxes.Add(New Box())
+        Boxes.Last.scale(50)
+        Boxes.Last.translate(400, 200, 0)
+        'right
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(465, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(465, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(460, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(470, 240, 0)
+        'left
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(335, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(335, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(330, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(340, 240, 0)
         Timer1.Enabled = False
         drawCube()
     End Sub
@@ -162,9 +227,9 @@ Public Class Box
         }
 
         screen = New Double(3, 3) {
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
             {0, 0, 0, 1}
         }
 
@@ -172,9 +237,10 @@ Public Class Box
         vs = multiplication(vr, screen)
     End Sub
 
-    Sub translate(x As Integer, y As Integer)
+    Sub translate(x As Integer, y As Integer, z As Integer)
         screen(0, 3) = x
         screen(1, 3) = y
+        screen(2, 3) = z
 
         vr = multiplication(v, view)
         vs = multiplication(vr, screen)
