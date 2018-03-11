@@ -5,30 +5,57 @@
     Dim btp As Bitmap
     Dim g As Graphics
 
-    Public v, vr, vs As List(Of Tpoint)
-    Dim view(3, 3), screen(3, 3) As Double
+    Public v, vr, vrt, vs As List(Of Tpoint)
+    Dim view(3, 3), view1(3, 3), view2(3, 3), screen(3, 3) As Double
     Dim edge As List(Of LineIndex)
     Dim degree As Integer = 0
+    Dim axis As String
+    Sub rotateX(deg As Double)
+        Dim sintet, costet, degtorad As Double
+        degtorad = Math.PI * (deg / 180)
+        sintet = Math.Sin(degtorad)
+        costet = Math.Cos(degtorad)
+        view(1, 1) = costet
+        view(1, 2) = -sintet
+        view(2, 1) = sintet
+        view(2, 2) = costet
 
+
+        vr = multiplication(v, view)
+
+    End Sub
+
+    Sub rotateY(deg As Double)
+        Dim sintet, costet, degtorad As Double
+        degtorad = Math.PI * (deg / 180)
+        sintet = Math.Sin(degtorad)
+        costet = Math.Cos(degtorad)
+
+        view(0, 0) = costet
+        view(0, 2) = -sintet
+        view(2, 0) = sintet
+        view(2, 2) = costet
+        view(2, 2) = -0.125
+        vr = multiplication(v, view)
+
+    End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        degree += 20
+        If axis = "x" Then
+            rotateX(TrackBar1.Value)
+        ElseIf axis = "y" Then
+            rotateY(TrackBar1.Value)
+        ElseIf axis = "z" Then
+            rotateX(TrackBar1.Value) 'ganti jadi z
+        End If
 
-        '        degree += 2
-        '       view(1, 1) = sin45 * Math.Sin(degree * Math.PI / 180)
-        '      view(1, 1) = Math.Cos(degree * Math.PI / 180)
-        '     view(1, 2) = -sin45 * Math.Sin(degree * Math.PI / 180)
         drawCube()
     End Sub
 
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        Dim rotate(3, 3) As Double
-        rotate = New Double(3, 3) {
-        {0.86, 0, -0.5, 0},         'cost 0 -sint 0 30
-        {0, 1, 0, 0},               '0 1 0 0
-        {0.5, 0, 0.86, 0},          'sint 0 cost 0
-        {0, 0, 0, 1}                '0 0 0 1
-        }
-
-        vr = multiplication(vr, rotate)
+        rotateX(TrackBar1.Value)
+        Timer1.Enabled = True
+        axis = "y"
         drawCube()
     End Sub
 
@@ -103,15 +130,15 @@
 
         view = New Double(3, 3) {
             {1, 0, 0, 0},
-            {0, 1, 0, -0.2},
-            {0, 0, 1, -0.2}, 'cop= 5
+            {0, 1, 0, 0},
+            {0, 0, 1, -0.125}, 'cop=(0,5,5)
             {0, 0, 0, 1}
         }
 
         screen = New Double(3, 3) {
             {50, 0, 0, 200},
             {0, -50, 0, 200},
-            {0, 0, 0, 200},
+            {0, -50, 0, 200},
             {0, 0, 0, 1}
         }
 
