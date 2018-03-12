@@ -1,5 +1,7 @@
 ﻿Public Class Form1
     Public Boxes As List(Of Box) = New List(Of Box)
+    Public World As List(Of Robot) = New List(Of Robot)
+
     Dim cos30 As Double = 0.86602540378
     Dim sin45 As Double = 0.70710678118
     Dim btp As Bitmap
@@ -56,80 +58,92 @@
         g = Graphics.FromImage(btp)
         g.Clear(Color.White)
 
-        'robot1
-        Boxes.Add(New Box())
-        Boxes.First.scale(50)
-        Boxes.First.translate(200, 200, 0)
-        'right
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(265, 190, 0)
+        'Robot 1
+        World.Add(New Robot)  ' Init new robot
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(265, 220, 0)
+        World.Last.Robot.Add(New LBox) 'Body
+        World.Last.Robot.Last.LBox.Add(New Box)
+        World.Last.Robot.Last.LBox.Last.scale(50)
+        World.Last.Robot.Last.LBox.Last.translate(200, 200, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(260, 240, 0)
+        World.Last.Robot.Add(New LBox) 'Right Arm
+        World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
+        World.Last.Robot.Last.LBox.Last.scale(15)
+        World.Last.Robot.Last.LBox.Last.translate(265, 190, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(270, 240, 0)
-        'left
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(135, 190, 0)
+        World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
+        World.Last.Robot.Last.LBox.Last.scale(15)
+        World.Last.Robot.Last.LBox.Last.translate(265, 220, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(135, 220, 0)
+        World.Last.Robot.Last.LBox.Add(New Box) 'left claw
+        World.Last.Robot.Last.LBox.Last.scale(5)
+        World.Last.Robot.Last.LBox.Last.translate(260, 240, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(130, 240, 0)
+        World.Last.Robot.Last.LBox.Add(New Box) 'right claw
+        World.Last.Robot.Last.LBox.Last.scale(5)
+        World.Last.Robot.Last.LBox.Last.translate(270, 240, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(140, 240, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(260, 240, 0)
 
-        'belom dibuat jadi first karna ntar aja wkwk
-        'robot2
-        Boxes.Add(New Box())
-        Boxes.Last.scale(50)
-        Boxes.Last.translate(400, 200, 0)
-        'right
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(465, 190, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(270, 240, 0)
+        ''left
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(135, 190, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(465, 220, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(135, 220, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(460, 240, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(130, 240, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(470, 240, 0)
-        'left
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(335, 190, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(140, 240, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(15)
-        Boxes.Last.translate(335, 220, 0)
+        ''belom dibuat jadi first karna ntar aja wkwk
+        ''robot2
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(50)
+        'Boxes.Last.translate(400, 200, 0)
+        ''right
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(465, 190, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(330, 240, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(465, 220, 0)
 
-        Boxes.Add(New Box())
-        Boxes.Last.scale(5)
-        Boxes.Last.translate(340, 240, 0)
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(460, 240, 0)
+
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(470, 240, 0)
+        ''left
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(335, 190, 0)
+
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(15)
+        'Boxes.Last.translate(335, 220, 0)
+
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(330, 240, 0)
+
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(340, 240, 0)
         Timer1.Enabled = False
         drawCube()
     End Sub
@@ -138,32 +152,55 @@
         g.Clear(Color.White)
         Dim a, b, c, d As Integer
 
-        For Each Box In Boxes
-            For i = 0 To Box.edges.Count - 1
-                a = Box.vs(Box.edges(i).p1).x
-                b = Box.vs(Box.edges(i).p1).y
-                c = Box.vs(Box.edges(i).p2).x
-                d = Box.vs(Box.edges(i).p2).y
-                If i <= 3 Then
-                    g.DrawLine(Pens.Red, a, b, c, d)
-                Else
-                    g.DrawLine(Pens.Black, a, b, c, d)
-                End If
+        'For Each Box In Boxes
+        '    For i = 0 To Box.edges.Count - 1
+        '        a = Box.vs(Box.edges(i).p1).x
+        '        b = Box.vs(Box.edges(i).p1).y
+        '        c = Box.vs(Box.edges(i).p2).x
+        '        d = Box.vs(Box.edges(i).p2).y
+        '        If i <= 3 Then
+        '            g.DrawLine(Pens.Red, a, b, c, d)
+        '        Else
+        '            g.DrawLine(Pens.Black, a, b, c, d)
+        '        End If
+        '    Next
+        '    pbCanvas.Image = btp
+        'Next
+
+        For Each Robots In World
+            For Each Robot In Robots.Robot
+                For Each Box In Robot.LBox
+                    For i = 0 To Box.edges.Count - 1
+                        a = Box.vs(Box.edges(i).p1).x
+                        b = Box.vs(Box.edges(i).p1).y
+                        c = Box.vs(Box.edges(i).p2).x
+                        d = Box.vs(Box.edges(i).p2).y
+                        If i <= 3 Then
+                            g.DrawLine(Pens.Red, a, b, c, d)
+                        Else
+                            g.DrawLine(Pens.Black, a, b, c, d)
+                        End If
+                    Next
+                    pbCanvas.Image = btp
+                Next
             Next
-            pbCanvas.Image = btp
         Next
     End Sub
 
     Private Sub tbTorsoY_Scroll(sender As Object, e As EventArgs) Handles tbTorsoY.Scroll
-        Boxes(0).rotateY(tbTorsoY.Value)
-        Boxes(1).rotateY(tbTorsoY.Value)
+        For Each item In World
+            item.RotateX(tbTorsoY.Value)
+        Next
+        'Boxes(0).rotateY(tbTorsoY.Value)
+        'Boxes(1).rotateY(tbTorsoY.Value)
 
         drawCube()
     End Sub
 
     Private Sub tbTorsoX_Scroll(sender As Object, e As EventArgs) Handles tbTorsoX.Scroll
-        Boxes(0).rotateX(tbTorsoX.Value)
-        Boxes(1).rotateX(tbTorsoX.Value)
+        For Each item In World.First.Robot.Last.LBox
+            item.rotateX(tbTorsoX.Value)
+        Next
 
         drawCube()
     End Sub
@@ -245,6 +282,7 @@ Public Class Box
         vr = multiplication(v, view)
         vs = multiplication(vr, screen)
     End Sub
+
     Sub scale(times As Integer)
         screen(0, 0) = times
         screen(1, 1) = -times
@@ -297,6 +335,50 @@ Public Class Box
 
         Return result
     End Function
+End Class
+
+Public Class LBox
+    Public LBox As List(Of Box) = New List(Of Box)
+
+    Sub RotateX(deg As Double)
+        For Each Box In LBox
+            Box.rotateX(deg)
+        Next
+    End Sub
+
+    Sub RotateY(deg As Double)
+        For Each Box In LBox
+            Box.rotateY(deg)
+        Next
+    End Sub
+End Class
+
+Public Class Robot
+    Public Robot As List(Of LBox) = New List(Of LBox)
+
+    Sub RotateX(deg As Double)
+        For Each Boxes In Robot
+            For Each Box In Boxes.LBox
+                Box.rotateX(deg)
+            Next
+        Next
+    End Sub
+
+    Sub RotateY(deg As Double)
+        For Each Boxes In Robot
+            For Each Box In Boxes.LBox
+                Box.rotateY(deg)
+            Next
+        Next
+    End Sub
+
+    Sub Translate(X As Integer, Y As Integer, Z As Integer)
+        For Each Boxes In Robot
+            For Each Box In Boxes.LBox
+                Box.translate(X, Y, Z)
+            Next
+        Next
+    End Sub
 End Class
 
 'Public Class Object3D 'Cuboid contains array of vertices and array of edges
