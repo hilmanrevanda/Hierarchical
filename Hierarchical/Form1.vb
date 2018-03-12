@@ -21,21 +21,7 @@
         'drawCube()
     End Sub
 
-    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        Boxes(0).rotateY(TrackBar1.Value)
-        Boxes(1).rotateY(TrackBar1.Value)
-
-        drawCube()
-    End Sub
-
-    Private Sub TrackBar2_Scroll(sender As Object, e As EventArgs) Handles TrackBar2.Scroll
-        Boxes(0).rotateX(TrackBar2.Value)
-        Boxes(1).rotateX(TrackBar2.Value)
-
-        drawCube()
-    End Sub
-
-    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
+    Private Sub btnForward_Click(sender As Object, e As EventArgs)
         'Dim MoveForward(3, 3) As Double
         'MoveForward = New Double(3, 3) {
         '{1, 0, 0, 0},
@@ -48,7 +34,7 @@
         'Timer1.Enabled = True
     End Sub
 
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs)
         'Dim MoveBackward(3, 3) As Double
         'MoveBackward = New Double(3, 3) {
         '{1, 0, 0, 0},
@@ -61,7 +47,7 @@
         'Timer1.Enabled = True
     End Sub
 
-    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+    Private Sub btnStop_Click(sender As Object, e As EventArgs)
         'Timer1.Enabled = False
     End Sub
 
@@ -107,7 +93,7 @@
         Boxes.Last.scale(5)
         Boxes.Last.translate(140, 240, 0)
 
-
+        'belom dibuat jadi first karna ntar aja wkwk
         'robot2
         Boxes.Add(New Box())
         Boxes.Last.scale(50)
@@ -166,6 +152,20 @@
             Next
             pbCanvas.Image = btp
         Next
+    End Sub
+
+    Private Sub tbTorsoY_Scroll(sender As Object, e As EventArgs) Handles tbTorsoY.Scroll
+        Boxes(0).rotateY(tbTorsoY.Value)
+        Boxes(1).rotateY(tbTorsoY.Value)
+
+        drawCube()
+    End Sub
+
+    Private Sub tbTorsoX_Scroll(sender As Object, e As EventArgs) Handles tbTorsoX.Scroll
+        Boxes(0).rotateX(tbTorsoX.Value)
+        Boxes(1).rotateX(tbTorsoX.Value)
+
+        drawCube()
     End Sub
 End Class
 

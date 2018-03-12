@@ -24,18 +24,42 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.pbCanvas = New System.Windows.Forms.PictureBox()
-        Me.btnReset = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.rbRight = New System.Windows.Forms.RadioButton()
+        Me.rbLeft = New System.Windows.Forms.RadioButton()
+        Me.rbRobot2 = New System.Windows.Forms.RadioButton()
+        Me.rbRobot1 = New System.Windows.Forms.RadioButton()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.btnReset = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.tbTweeze = New System.Windows.Forms.TrackBar()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.tbClaw = New System.Windows.Forms.TrackBar()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.tbUnderArm = New System.Windows.Forms.TrackBar()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.tbUpperArm = New System.Windows.Forms.TrackBar()
+        Me.tbTorsoX = New System.Windows.Forms.TrackBar()
         Me.Geser = New System.Windows.Forms.Label()
-        Me.TrackBar2 = New System.Windows.Forms.TrackBar()
-        Me.btnForward = New System.Windows.Forms.Button()
-        Me.btnBackward = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.tbTorsoY = New System.Windows.Forms.TrackBar()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnStop = New System.Windows.Forms.Button()
+        Me.btnBackward = New System.Windows.Forms.Button()
+        Me.btnForward = New System.Windows.Forms.Button()
         CType(Me.pbCanvas, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TrackBar2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.tbTweeze, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbClaw, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbUnderArm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbUpperArm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTorsoX, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTorsoY, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'pbCanvas
@@ -46,115 +70,343 @@ Partial Class Form1
         Me.pbCanvas.TabIndex = 0
         Me.pbCanvas.TabStop = False
         '
-        'btnReset
-        '
-        Me.btnReset.Location = New System.Drawing.Point(627, 13)
-        Me.btnReset.Name = "btnReset"
-        Me.btnReset.Size = New System.Drawing.Size(75, 23)
-        Me.btnReset.TabIndex = 1
-        Me.btnReset.Text = "Reset"
-        Me.btnReset.UseVisualStyleBackColor = True
-        '
         'Timer1
         '
         '
-        'TrackBar1
+        'Panel1
         '
-        Me.TrackBar1.Location = New System.Drawing.Point(627, 82)
-        Me.TrackBar1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TrackBar1.Maximum = 100
-        Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(332, 45)
-        Me.TrackBar1.TabIndex = 2
+        Me.Panel1.BackColor = System.Drawing.Color.Teal
+        Me.Panel1.Controls.Add(Me.rbRight)
+        Me.Panel1.Controls.Add(Me.rbLeft)
+        Me.Panel1.Controls.Add(Me.rbRobot2)
+        Me.Panel1.Controls.Add(Me.rbRobot1)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Controls.Add(Me.Label6)
+        Me.Panel1.Controls.Add(Me.btnReset)
+        Me.Panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel1.Location = New System.Drawing.Point(593, 13)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(376, 160)
+        Me.Panel1.TabIndex = 23
         '
-        'Label1
+        'rbRight
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(625, 53)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(32, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Putar"
+        Me.rbRight.AutoSize = True
+        Me.rbRight.ForeColor = System.Drawing.Color.Aqua
+        Me.rbRight.Location = New System.Drawing.Point(245, 124)
+        Me.rbRight.Name = "rbRight"
+        Me.rbRight.Size = New System.Drawing.Size(50, 17)
+        Me.rbRight.TabIndex = 29
+        Me.rbRight.TabStop = True
+        Me.rbRight.Text = "Right"
+        Me.rbRight.UseVisualStyleBackColor = True
+        '
+        'rbLeft
+        '
+        Me.rbLeft.AutoSize = True
+        Me.rbLeft.ForeColor = System.Drawing.Color.Aqua
+        Me.rbLeft.Location = New System.Drawing.Point(245, 90)
+        Me.rbLeft.Name = "rbLeft"
+        Me.rbLeft.Size = New System.Drawing.Size(43, 17)
+        Me.rbLeft.TabIndex = 28
+        Me.rbLeft.TabStop = True
+        Me.rbLeft.Text = "Left"
+        Me.rbLeft.UseVisualStyleBackColor = True
+        '
+        'rbRobot2
+        '
+        Me.rbRobot2.AutoSize = True
+        Me.rbRobot2.ForeColor = System.Drawing.Color.Aqua
+        Me.rbRobot2.Location = New System.Drawing.Point(54, 124)
+        Me.rbRobot2.Name = "rbRobot2"
+        Me.rbRobot2.Size = New System.Drawing.Size(63, 17)
+        Me.rbRobot2.TabIndex = 27
+        Me.rbRobot2.TabStop = True
+        Me.rbRobot2.Text = "Robot 2"
+        Me.rbRobot2.UseVisualStyleBackColor = True
+        '
+        'rbRobot1
+        '
+        Me.rbRobot1.AutoSize = True
+        Me.rbRobot1.ForeColor = System.Drawing.Color.Aqua
+        Me.rbRobot1.Location = New System.Drawing.Point(54, 90)
+        Me.rbRobot1.Name = "rbRobot1"
+        Me.rbRobot1.Size = New System.Drawing.Size(63, 17)
+        Me.rbRobot1.TabIndex = 26
+        Me.rbRobot1.TabStop = True
+        Me.rbRobot1.Text = "Robot 1"
+        Me.rbRobot1.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Label7.Location = New System.Drawing.Point(242, 64)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(28, 13)
+        Me.Label7.TabIndex = 25
+        Me.Label7.Text = "Side"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Label6.Location = New System.Drawing.Point(48, 64)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(36, 13)
+        Me.Label6.TabIndex = 24
+        Me.Label6.Text = "Robot"
+        '
+        'btnReset
+        '
+        Me.btnReset.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.btnReset.ForeColor = System.Drawing.Color.GhostWhite
+        Me.btnReset.Location = New System.Drawing.Point(142, 17)
+        Me.btnReset.Name = "btnReset"
+        Me.btnReset.Size = New System.Drawing.Size(75, 23)
+        Me.btnReset.TabIndex = 23
+        Me.btnReset.Text = "Reset"
+        Me.btnReset.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Teal
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.tbTweeze)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.tbClaw)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Controls.Add(Me.tbUnderArm)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.tbUpperArm)
+        Me.Panel2.Controls.Add(Me.tbTorsoX)
+        Me.Panel2.Controls.Add(Me.Geser)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.tbTorsoY)
+        Me.Panel2.Location = New System.Drawing.Point(593, 179)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(376, 169)
+        Me.Panel2.TabIndex = 24
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.Aqua
+        Me.Label5.Location = New System.Drawing.Point(202, 101)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(76, 13)
+        Me.Label5.TabIndex = 28
+        Me.Label5.Text = "Tweeze Claws"
+        '
+        'tbTweeze
+        '
+        Me.tbTweeze.Location = New System.Drawing.Point(202, 116)
+        Me.tbTweeze.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbTweeze.Maximum = 100
+        Me.tbTweeze.Name = "tbTweeze"
+        Me.tbTweeze.Size = New System.Drawing.Size(157, 45)
+        Me.tbTweeze.TabIndex = 27
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.Aqua
+        Me.Label4.Location = New System.Drawing.Point(16, 101)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(70, 13)
+        Me.Label4.TabIndex = 26
+        Me.Label4.Text = "Rotate Claws"
+        '
+        'tbClaw
+        '
+        Me.tbClaw.Location = New System.Drawing.Point(16, 116)
+        Me.tbClaw.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbClaw.Maximum = 100
+        Me.tbClaw.Name = "tbClaw"
+        Me.tbClaw.Size = New System.Drawing.Size(157, 45)
+        Me.tbClaw.TabIndex = 25
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.Aqua
+        Me.Label3.Location = New System.Drawing.Point(202, 52)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(92, 13)
+        Me.Label3.TabIndex = 24
+        Me.Label3.Text = "Rotate Under Arm"
+        '
+        'tbUnderArm
+        '
+        Me.tbUnderArm.Location = New System.Drawing.Point(202, 67)
+        Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbUnderArm.Maximum = 100
+        Me.tbUnderArm.Name = "tbUnderArm"
+        Me.tbUnderArm.Size = New System.Drawing.Size(157, 45)
+        Me.tbUnderArm.TabIndex = 23
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.Aqua
+        Me.Label2.Location = New System.Drawing.Point(16, 52)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(92, 13)
+        Me.Label2.TabIndex = 22
+        Me.Label2.Text = "Rotate Upper Arm"
+        '
+        'tbUpperArm
+        '
+        Me.tbUpperArm.Location = New System.Drawing.Point(16, 67)
+        Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbUpperArm.Maximum = 100
+        Me.tbUpperArm.Name = "tbUpperArm"
+        Me.tbUpperArm.Size = New System.Drawing.Size(157, 45)
+        Me.tbUpperArm.TabIndex = 21
+        '
+        'tbTorsoX
+        '
+        Me.tbTorsoX.Location = New System.Drawing.Point(202, 18)
+        Me.tbTorsoX.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbTorsoX.Maximum = 100
+        Me.tbTorsoX.Name = "tbTorsoX"
+        Me.tbTorsoX.Size = New System.Drawing.Size(156, 45)
+        Me.tbTorsoX.TabIndex = 20
         '
         'Geser
         '
         Me.Geser.AutoSize = True
-        Me.Geser.Location = New System.Drawing.Point(625, 130)
+        Me.Geser.ForeColor = System.Drawing.Color.Aqua
+        Me.Geser.Location = New System.Drawing.Point(202, 3)
         Me.Geser.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Geser.Name = "Geser"
-        Me.Geser.Size = New System.Drawing.Size(35, 13)
-        Me.Geser.TabIndex = 4
-        Me.Geser.Text = "Geser"
+        Me.Geser.Size = New System.Drawing.Size(79, 13)
+        Me.Geser.TabIndex = 19
+        Me.Geser.Text = "Rotate Torso X"
         '
-        'TrackBar2
+        'Label1
         '
-        Me.TrackBar2.Location = New System.Drawing.Point(627, 157)
-        Me.TrackBar2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TrackBar2.Maximum = 100
-        Me.TrackBar2.Name = "TrackBar2"
-        Me.TrackBar2.Size = New System.Drawing.Size(332, 45)
-        Me.TrackBar2.TabIndex = 5
+        Me.Label1.AutoSize = True
+        Me.Label1.ForeColor = System.Drawing.Color.Aqua
+        Me.Label1.Location = New System.Drawing.Point(16, 3)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(79, 13)
+        Me.Label1.TabIndex = 18
+        Me.Label1.Text = "Rotate Torso Y"
         '
-        'btnForward
+        'tbTorsoY
         '
-        Me.btnForward.Location = New System.Drawing.Point(627, 208)
-        Me.btnForward.Name = "btnForward"
-        Me.btnForward.Size = New System.Drawing.Size(75, 23)
-        Me.btnForward.TabIndex = 6
-        Me.btnForward.Text = "Forward"
-        Me.btnForward.UseVisualStyleBackColor = True
+        Me.tbTorsoY.Location = New System.Drawing.Point(16, 18)
+        Me.tbTorsoY.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbTorsoY.Maximum = 100
+        Me.tbTorsoY.Name = "tbTorsoY"
+        Me.tbTorsoY.Size = New System.Drawing.Size(157, 45)
+        Me.tbTorsoY.TabIndex = 17
         '
-        'btnBackward
+        'Panel3
         '
-        Me.btnBackward.Location = New System.Drawing.Point(709, 207)
-        Me.btnBackward.Name = "btnBackward"
-        Me.btnBackward.Size = New System.Drawing.Size(75, 23)
-        Me.btnBackward.TabIndex = 7
-        Me.btnBackward.Text = "Backward"
-        Me.btnBackward.UseVisualStyleBackColor = True
+        Me.Panel3.BackColor = System.Drawing.Color.Teal
+        Me.Panel3.Controls.Add(Me.btnStop)
+        Me.Panel3.Controls.Add(Me.btnBackward)
+        Me.Panel3.Controls.Add(Me.btnForward)
+        Me.Panel3.Location = New System.Drawing.Point(593, 355)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(380, 100)
+        Me.Panel3.TabIndex = 25
         '
         'btnStop
         '
-        Me.btnStop.Location = New System.Drawing.Point(802, 207)
+        Me.btnStop.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.btnStop.ForeColor = System.Drawing.Color.GhostWhite
+        Me.btnStop.Location = New System.Drawing.Point(280, 39)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(75, 23)
-        Me.btnStop.TabIndex = 8
+        Me.btnStop.TabIndex = 11
         Me.btnStop.Text = "Stop"
-        Me.btnStop.UseVisualStyleBackColor = True
+        Me.btnStop.UseVisualStyleBackColor = False
+        '
+        'btnBackward
+        '
+        Me.btnBackward.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.btnBackward.ForeColor = System.Drawing.Color.GhostWhite
+        Me.btnBackward.Location = New System.Drawing.Point(154, 39)
+        Me.btnBackward.Name = "btnBackward"
+        Me.btnBackward.Size = New System.Drawing.Size(75, 23)
+        Me.btnBackward.TabIndex = 10
+        Me.btnBackward.Text = "Backward"
+        Me.btnBackward.UseVisualStyleBackColor = False
+        '
+        'btnForward
+        '
+        Me.btnForward.BackColor = System.Drawing.Color.DarkSlateGray
+        Me.btnForward.ForeColor = System.Drawing.Color.GhostWhite
+        Me.btnForward.Location = New System.Drawing.Point(26, 39)
+        Me.btnForward.Name = "btnForward"
+        Me.btnForward.Size = New System.Drawing.Size(75, 23)
+        Me.btnForward.TabIndex = 9
+        Me.btnForward.Text = "Forward"
+        Me.btnForward.UseVisualStyleBackColor = False
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.DarkCyan
         Me.ClientSize = New System.Drawing.Size(968, 450)
-        Me.Controls.Add(Me.btnStop)
-        Me.Controls.Add(Me.btnBackward)
-        Me.Controls.Add(Me.btnForward)
-        Me.Controls.Add(Me.TrackBar2)
-        Me.Controls.Add(Me.Geser)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TrackBar1)
-        Me.Controls.Add(Me.btnReset)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pbCanvas)
         Me.Name = "Form1"
         Me.Text = "Hierarchical Model"
         CType(Me.pbCanvas, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TrackBar2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.tbTweeze, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbClaw, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbUnderArm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbUpperArm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTorsoX, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTorsoY, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents pbCanvas As PictureBox
-    Friend WithEvents btnReset As Button
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents TrackBar1 As TrackBar
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents rbRight As RadioButton
+    Friend WithEvents rbLeft As RadioButton
+    Friend WithEvents rbRobot2 As RadioButton
+    Friend WithEvents rbRobot1 As RadioButton
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents btnReset As Button
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label5 As Label
+    Friend WithEvents tbTweeze As TrackBar
+    Friend WithEvents Label4 As Label
+    Friend WithEvents tbClaw As TrackBar
+    Friend WithEvents Label3 As Label
+    Friend WithEvents tbUnderArm As TrackBar
+    Friend WithEvents Label2 As Label
+    Friend WithEvents tbUpperArm As TrackBar
+    Friend WithEvents tbTorsoX As TrackBar
     Friend WithEvents Geser As Label
-    Friend WithEvents TrackBar2 As TrackBar
-    Friend WithEvents btnForward As Button
-    Friend WithEvents btnBackward As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents tbTorsoY As TrackBar
+    Friend WithEvents Panel3 As Panel
     Friend WithEvents btnStop As Button
+    Friend WithEvents btnBackward As Button
+    Friend WithEvents btnForward As Button
 End Class
