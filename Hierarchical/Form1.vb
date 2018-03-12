@@ -7,7 +7,6 @@
 
     Dim degree As Integer = 0
 
-    Dim axis As String
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         'degree += 20
@@ -22,21 +21,7 @@
         'drawCube()
     End Sub
 
-    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-        Boxes(0).rotateY(TrackBar1.Value)
-        Boxes(1).rotateY(TrackBar1.Value)
-
-        drawCube()
-    End Sub
-
-    Private Sub TrackBar2_Scroll(sender As Object, e As EventArgs) Handles TrackBar2.Scroll
-        Boxes(0).rotateX(TrackBar2.Value)
-        Boxes(1).rotateX(TrackBar2.Value)
-
-        drawCube()
-    End Sub
-
-    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
+    Private Sub btnForward_Click(sender As Object, e As EventArgs)
         'Dim MoveForward(3, 3) As Double
         'MoveForward = New Double(3, 3) {
         '{1, 0, 0, 0},
@@ -49,7 +34,7 @@
         'Timer1.Enabled = True
     End Sub
 
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs)
         'Dim MoveBackward(3, 3) As Double
         'MoveBackward = New Double(3, 3) {
         '{1, 0, 0, 0},
@@ -62,7 +47,7 @@
         'Timer1.Enabled = True
     End Sub
 
-    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+    Private Sub btnStop_Click(sender As Object, e As EventArgs)
         'Timer1.Enabled = False
     End Sub
 
@@ -71,14 +56,80 @@
         g = Graphics.FromImage(btp)
         g.Clear(Color.White)
 
+        'robot1
         Boxes.Add(New Box())
-        Boxes(0).scale(50)
-        Boxes(0).translate(200, 200)
+        Boxes.First.scale(50)
+        Boxes.First.translate(200, 200, 0)
+        'right
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(265, 190, 0)
 
         Boxes.Add(New Box())
-        Boxes(1).scale(20)
-        Boxes(1).translate(200, 130)
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(265, 220, 0)
 
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(260, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(270, 240, 0)
+        'left
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(135, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(135, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(130, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(140, 240, 0)
+
+        'belom dibuat jadi first karna ntar aja wkwk
+        'robot2
+        Boxes.Add(New Box())
+        Boxes.Last.scale(50)
+        Boxes.Last.translate(400, 200, 0)
+        'right
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(465, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(465, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(460, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(470, 240, 0)
+        'left
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(335, 190, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(15)
+        Boxes.Last.translate(335, 220, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(330, 240, 0)
+
+        Boxes.Add(New Box())
+        Boxes.Last.scale(5)
+        Boxes.Last.translate(340, 240, 0)
         Timer1.Enabled = False
         drawCube()
     End Sub
@@ -101,6 +152,20 @@
             Next
             pbCanvas.Image = btp
         Next
+    End Sub
+
+    Private Sub tbTorsoY_Scroll(sender As Object, e As EventArgs) Handles tbTorsoY.Scroll
+        Boxes(0).rotateY(tbTorsoY.Value)
+        Boxes(1).rotateY(tbTorsoY.Value)
+
+        drawCube()
+    End Sub
+
+    Private Sub tbTorsoX_Scroll(sender As Object, e As EventArgs) Handles tbTorsoX.Scroll
+        Boxes(0).rotateX(tbTorsoX.Value)
+        Boxes(1).rotateX(tbTorsoX.Value)
+
+        drawCube()
     End Sub
 End Class
 
@@ -172,9 +237,10 @@ Public Class Box
         vs = multiplication(vr, screen)
     End Sub
 
-    Sub translate(x As Integer, y As Integer)
+    Sub translate(x As Integer, y As Integer, z As Integer)
         screen(0, 3) = x
         screen(1, 3) = y
+        screen(2, 3) = z
 
         vr = multiplication(v, view)
         vs = multiplication(vr, screen)
