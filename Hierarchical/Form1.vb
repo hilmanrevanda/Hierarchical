@@ -72,12 +72,12 @@
         g.Clear(Color.White)
 
         Boxes.Add(New Box())
-        Boxes.First.scale(50)
-        Boxes.First.translate(200, 200)
+        Boxes(0).scale(50)
+        Boxes(0).translate(200, 200)
 
         Boxes.Add(New Box())
-        Boxes.Last.scale(20)
-        Boxes.Last.translate(100, 100)
+        Boxes(1).scale(20)
+        Boxes(1).translate(200, 130)
 
         Timer1.Enabled = False
         drawCube()
