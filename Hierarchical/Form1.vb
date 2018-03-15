@@ -10,6 +10,7 @@
     Dim degree As Integer = 0
 
 
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         'degree += 20
         'If axis = "x" Then
@@ -23,84 +24,87 @@
         'drawCube()
     End Sub
 
-    Private Sub btnForward_Click(sender As Object, e As EventArgs)
-        'Dim MoveForward(3, 3) As Double
-        'MoveForward = New Double(3, 3) {
-        '{1, 0, 0, 0},
-        '{0, 1, 0, 0},
-        '{0, 0, 0, 0.1},
-        '{0, 0, 0, 1}
-        '}
 
-        'vr = multiplication(vr, MoveForward)
-        'Timer1.Enabled = True
-    End Sub
-
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs)
-        'Dim MoveBackward(3, 3) As Double
-        'MoveBackward = New Double(3, 3) {
-        '{1, 0, 0, 0},
-        '{0, 1, 0, 0},
-        '{0, 0, 0, 0.1},
-        '{0, 0, 0, 1}
-        '}
-
-        'vr = multiplication(vr, MoveBackward)
-        'Timer1.Enabled = True
-    End Sub
-
-    Private Sub btnStop_Click(sender As Object, e As EventArgs)
-        'Timer1.Enabled = False
-    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        btp = New Bitmap(pbCanvas.Width, pbCanvas.Height)
+
+        Dim torso, arm1, arm2, claw1, claw2 As Box
+        Dim tree As New Hierarchy = New Bitmap(pbCanvas.Width, pbCanvas.Height)
         g = Graphics.FromImage(btp)
         g.Clear(Color.White)
 
-        For i As Integer = 0 To 1
-            World.Add(New Robot)  ' Init new robot
 
-            World.Last.Robot.Add(New LBox) 'Body
-            World.Last.Robot.Last.LBox.Add(New Box)
-            World.Last.Robot.Last.LBox.Last.scale(50)
-            World.Last.Robot.Last.LBox.Last.translate(200, 200, 0)
 
-            World.Last.Robot.Add(New LBox) 'Right Arm
-            World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(265, 190, 0)
 
-            World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(265, 220, 0)
 
-            World.Last.Robot.Last.LBox.Add(New Box) 'left claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(260, 240, 0)
+        'Robot 1
 
-            World.Last.Robot.Last.LBox.Add(New Box) 'right claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(270, 240, 0)
+        World.Add(New Robot)  ' Init new robot
 
-            World.Last.Robot.Add(New LBox) 'Left Arm
-            World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(135, 190, 0)
+        torso = New Box()
+        torso.scale(50)
+        torso.translate(200, 200, 0)
 
-            World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(135, 220, 0)
+        arm1 = New Box()
+        arm1.scale(15)
+        arm1.translate(265, 190, 0)
 
-            World.Last.Robot.Last.LBox.Add(New Box) 'left claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(130, 240, 0)
+        arm2 = New Box()
+        arm2.scale(50)
+        arm2.translate(265, 220, 0)
 
-            World.Last.Robot.Last.LBox.Add(New Box) 'right claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(140, 240, 0)
+        claw1 = New Box()
+        claw1.scale(50)
+        claw1.translate(258, 240, 0)
 
-            World.Last.Translate(-200 * i, 0, 0)
+        claw2 = New Box()
+        claw2.scale(50)
+        claw2.translate(273, 240, 0)
+
+        tree.first = torso
+        torso.child = arm1
+        arm1.child = arm2
+        arm2.child = claw1
+        claw1.nxt = claw2
+        'World.Last.Robot.Add(New LBox) 'Body
+        'World.Last.Robot.Last.LBox.Add(New Box)
+        'World.Last.Robot.Last.LBox.Last.scale(50)
+        'World.Last.Robot.Last.LBox.Last.translate(200, 200, 0)
+
+        'World.Last.Robot.Add(New LBox) 'Right Arm
+        'World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
+        'World.Last.Robot.Last.LBox.Last.scale(15)
+        'World.Last.Robot.Last.LBox.Last.translate(265, 190, 0)
+
+        'World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
+        'World.Last.Robot.Last.LBox.Last.scale(15)
+        'World.Last.Robot.Last.LBox.Last.translate(265, 220, 0)
+
+        'World.Last.Robot.Last.LBox.Add(New Box) 'left claw
+        'World.Last.Robot.Last.LBox.Last.scale(5)
+        'World.Last.Robot.Last.LBox.Last.translate(258, 240, 0)
+
+        'World.Last.Robot.Last.LBox.Add(New Box) 'right claw
+        'World.Last.Robot.Last.LBox.Last.scale(5)
+        'World.Last.Robot.Last.LBox.Last.translate(273, 240, 0)
+
+        'Boxes.Add(New Box())
+        'Boxes.Last.scale(5)
+        'Boxes.Last.translate(260, 240, 0)
+
+        World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
+        World.Last.Robot.Last.LBox.Last.scale(15)
+        World.Last.Robot.Last.LBox.Last.translate(135, 220, 0)
+
+        World.Last.Robot.Last.LBox.Add(New Box) 'left claw
+        World.Last.Robot.Last.LBox.Last.scale(5)
+        World.Last.Robot.Last.LBox.Last.translate(130, 240, 0)
+
+        World.Last.Robot.Last.LBox.Add(New Box) 'right claw
+        World.Last.Robot.Last.LBox.Last.scale(5)
+        World.Last.Robot.Last.LBox.Last.translate(140, 240, 0)
+
+        World.Last.Translate(-200 * i, 0, 0)
         Next
         Timer1.Enabled = False
         drawCube()
@@ -146,8 +150,9 @@
     End Sub
 
     Private Sub tbTorsoY_Scroll(sender As Object, e As EventArgs) Handles tbTorsoY.Scroll
+
         For Each item In World
-            item.RotateX(tbTorsoY.Value)
+            item.RotateY(tbTorsoY.Value)
         Next
         'Boxes(0).rotateY(tbTorsoY.Value)
         'Boxes(1).rotateY(tbTorsoY.Value)
@@ -163,7 +168,51 @@
         drawCube()
     End Sub
 
+    Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
+        For Each item In World.First.Robot.Last.LBox
+            item.rotateY(tbUpperArm.Value)
+        Next
+
+        drawCube()
+    End Sub
+    Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
+        For Each item In World.First.Robot.Last.LBox
+            item.rotateY(tbUnderArm.Value)
+        Next
+
+        drawCube()
+    End Sub
+    Private Sub btnForward_Click(sender As Object, e As EventArgs)
+        'Dim MoveForward(3, 3) As Double
+        'MoveForward = New Double(3, 3) {
+        '   {1, 0, 0, 0},
+        '  {0, 1, 0, 0},
+        ' {0, 0, 1, 0},
+        '{0, 0, 0.1, 1}
+        '}
+
+        'Timer1.Enabled = True
+    End Sub
+
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs)
+        'Dim MoveBackward(3, 3) As Double
+        'MoveBackward = New Double(3, 3) {
+        '{1, 0, 0, 0},
+        '{0, 1, 0, 0},
+        '{0, 0, 0, 0.1},
+        '{0, 0, 0, 1}
+        '}
+
+        'vr = multiplication(vr, MoveBackward)
+        'Timer1.Enabled = True
+    End Sub
+
+    Private Sub btnStop_Click(sender As Object, e As EventArgs)
+        'Timer1.Enabled = False
+    End Sub
+
 End Class
+
 
 Public Class Tpoint
     Public x, y, z, w As Double
@@ -176,6 +225,7 @@ Public Class Tpoint
     End Sub
 End Class
 
+
 Public Class LineIndex
     Public p1, p2 As Integer
 
@@ -185,15 +235,21 @@ Public Class LineIndex
     End Sub
 End Class
 
+
 Public Class Box
+    Public child, nxt As Box
     Public edges As List(Of LineIndex) = New List(Of LineIndex)
     Public view(3, 3), screen(3, 3) As Double
-    Public alpha As Integer = 0
+    Public temp As Double
     Public v As List(Of Tpoint) = New List(Of Tpoint)
     Public vr As List(Of Tpoint) = New List(Of Tpoint)
     Public vs As List(Of Tpoint) = New List(Of Tpoint)
+    Public wt As List(Of Tpoint) = New List(Of Tpoint)
 
     Sub New()
+        child = Nothing
+        nxt = Nothing
+
         v.Add(New Tpoint(-1, -1, 1, 1)) '1
         v.Add(New Tpoint(1, -1, 1, 1)) '2
         v.Add(New Tpoint(1, -1, -1, 1)) '3
@@ -218,11 +274,13 @@ Public Class Box
 
         view = New Double(3, 3) {
             {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, -0.125},
+            {0, 1, 0, -0.125},
+            {0, 0, 1, 0},
             {0, 0, 0, 1}
         }
 
+        '{Math.Cos(30 * Math.PI / 180), 0, Math.Sin(30 * Math.PI / 180), 0},
+        '{Math.Sin(30 * Math.PI / 180) / 2, Math.Cos(30 * Math.PI / 180), 0, Math.Cos(30 * Math.PI / 180)},
         screen = New Double(3, 3) {
             {0, 0, 0, 0},
             {0, 0, 0, 0},
@@ -230,10 +288,18 @@ Public Class Box
             {0, 0, 0, 1}
         }
 
+        '{0, 25, 0, 200},
+        '  {0, 0, -25, 200},
+        ' {0, 0, 0, 0},
+        '{0, 0, 0, 1}
+        'temp = multiplication(rotateX, m)
         vr = multiplication(v, view)
         vs = multiplication(vr, screen)
     End Sub
 
+    Public Sub WorldTransformation(t(,) As Double)
+        wt = multiplication(v, t)
+    End Sub
     Sub translate(x As Integer, y As Integer, z As Integer)
         screen(0, 3) = x
         screen(1, 3) = y
@@ -277,39 +343,18 @@ Public Class Box
         vs = multiplication(vr, screen)
     End Sub
 
-    Sub SetRotationMatrix(ByRef mx As Double(,), tet As Double, ax As Integer)
+    Sub rotateY(deg As Double)
+
+
         Dim sintet, costet, degtorad As Double
         degtorad = Math.PI * (tet / 180)
         sintet = Math.Sin(degtorad)
         costet = Math.Cos(degtorad)
 
-        If ax = 1 Then
-            mx = {
-                {1, 0, 0, 0},
-                {0, costet, sintet, 0},
-                {0, -sintet, costet, 0},
-                {0, 0, 0, 1}
-            }
-        ElseIf ax = 0 Then
-            mx = {
-                {costet, 0, -sintet, 0},
-                {0, 1, 0, 0},
-                {sintet, 0, costet, 0},
-                {0, 0, 0, 1}
-            }
-        End If
-    End Sub
-
-    Sub rotateY(tet As Double)
-        'Dim sintet, costet, degtorad As Double
-        'degtorad = Math.PI * (deg / 180)
-        'sintet = Math.Sin(degtorad)
-        'costet = Math.Cos(degtorad)
-
-        'view(0, 0) = costet
-        'view(0, 2) = -sintet
-        'view(2, 0) = sintet
-        'view(2, 2) = costet
+        view(0, 0) = costet
+        view(0, 2) = sintet
+        view(2, 0) = -sintet
+        view(2, 2) = costet
 
         'vr = multiplication(v, view)
 
@@ -325,8 +370,24 @@ Public Class Box
         t2 = view
         view = MatrixMultiplication(t1, t2)
         vr = multiplication(v, view)
+
         vs = multiplication(vr, screen)
     End Sub
+    Sub rotateZ(deg As Double)
+        Dim sintet, costet, degtorad As Double
+        degtorad = Math.PI * (deg / 180)
+        sintet = Math.Sin(degtorad)
+        costet = Math.Cos(degtorad)
+
+        view(0, 0) = costet
+        view(0, 1) = sintet
+        view(1, 0) = -sintet
+        view(1, 1) = costet
+
+        vr = multiplication(v, view)
+        vs = multiplication(vr, screen)
+    End Sub
+
 
     Function multiplication(origin As List(Of Tpoint), multiplier(,) As Double) As List(Of Tpoint)
         Dim result As List(Of Tpoint) = New List(Of Tpoint)
@@ -403,6 +464,13 @@ Public Class Robot
                 Box.translate(Box.screen(0, 3) - X, Box.screen(1, 3) - Y, Box.screen(2, 3) - Z)
             Next
         Next
+    End Sub
+End Class
+
+Public Class Hierarchy
+    Public first As Box
+    Public Sub New()
+        first = Nothing
     End Sub
 End Class
 
