@@ -1,0 +1,123 @@
+commit e1050d90ced52392904359277b35ac949e846b41
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 12 12:54:18 2018 +0700
+
+    user interface
+
+commit b43027c827e916eba29a6e9c7b394f337c856d4f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 12 01:38:39 2018 +0700
+
+    create objects
+
+commit 044cf877277a908cdcd854aa2e43160c1ddb89c0
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sun Mar 11 21:29:04 2018 +0700
+
+    multi box
+
+commit 4bc4e14b6b39367460b241b379fe5d3bc74fc93b
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sun Mar 11 21:19:09 2018 +0700
+
+    -
+
+commit b398d8fb10ddb180850e3b97f4c6cee9054981de
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 01:22:28 2018 +0700
+
+    -move forward, backward, stop (bugged)
+
+commit 06ac2b6a29e93e40a5bf9956626f3b071addfeb1
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:36:34 2018 +0700
+
+    - Change the front surface
+    - Change the rotation matrix (perspective)
+
+commit a44789b095d249c9e1b526338a6a1e3b6cda9b02
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:15:58 2018 +0700
+
+    rotate perspective on Y
+
+commit ed378a1ba0b99a57d2da95d25a48e564c9b4dd0f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:03:11 2018 +0700
+
+    Perspective view
+
+commit b531021604c98a48ff8077e20babc870d0ca7bc5
+Merge: 56bcefb e30f566
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Tue Mar 6 00:47:03 2018 +0700
+
+    Merge branch 'master' of https://github.com/ichapredrika/Hierarchical
+
+commit 56bcefb60dc523750c5225b018b594bd8329cd2b
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Tue Mar 6 00:46:53 2018 +0700
+
+    -
+
+commit e30f566c23569c6f961d56be9ba348f79f6b9657
+Merge: 218d93c b4b4552
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Tue Mar 6 00:41:21 2018 +0700
+
+    tst
+
+commit 218d93cdfee161a300ea5f22724b1f0885234ccd
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Tue Mar 6 00:39:20 2018 +0700
+
+    putar+geser pakai trackbar
+
+commit b4b4552731b189f431157626b5eb81432b65756f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:42:33 2018 +0700
+
+    -
+
+commit 8fe7eb0f7868598b660322d07f7406d83ee8c6d0
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:41:40 2018 +0700
+
+    -
+
+commit 147af7cb710642d9fd9960111f79bc5e910ca1e6
+Merge: 40184e6 aaee961
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:41:30 2018 +0700
+
+    -
+
+commit 40184e6d82224d8aff6a39f8a2aee55ec7d43ca5
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:39:53 2018 +0700
+
+    -
+
+commit aaee961f6f1f2613b139c7feead39798523157d4
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Mon Mar 5 23:19:59 2018 +0700
+
+    Gambar kubus
+
+commit f96927a6d3ec7255fcca591c5edf7a17ae19d8d7
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Mar 3 12:23:11 2018 +0700
+
+    - Storing point, line, object,list of object as class
+
+commit b840a3bb579a1b1caaefb5fda5f323e816bbb5fe
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Feb 24 13:03:38 2018 +0700
+
+    Add project files.
+
+commit 2d424f3dd950f7a6031b1343e5a874758ccc8444
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Feb 24 13:03:35 2018 +0700
+
+    Add .gitignore and .gitattributes.
