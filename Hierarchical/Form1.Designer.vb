@@ -65,14 +65,11 @@ Partial Class Form1
         'pbCanvas
         '
         Me.pbCanvas.Location = New System.Drawing.Point(17, 16)
-        Me.pbCanvas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbCanvas.Margin = New System.Windows.Forms.Padding(4)
         Me.pbCanvas.Name = "pbCanvas"
         Me.pbCanvas.Size = New System.Drawing.Size(773, 523)
         Me.pbCanvas.TabIndex = 0
         Me.pbCanvas.TabStop = False
-        '
-        'Timer1
-        '
         '
         'Panel1
         '
@@ -86,7 +83,7 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.btnReset)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Panel1.Location = New System.Drawing.Point(791, 16)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(501, 197)
         Me.Panel1.TabIndex = 23
@@ -96,7 +93,7 @@ Partial Class Form1
         Me.rbRight.AutoSize = True
         Me.rbRight.ForeColor = System.Drawing.Color.Aqua
         Me.rbRight.Location = New System.Drawing.Point(327, 153)
-        Me.rbRight.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbRight.Margin = New System.Windows.Forms.Padding(4)
         Me.rbRight.Name = "rbRight"
         Me.rbRight.Size = New System.Drawing.Size(62, 21)
         Me.rbRight.TabIndex = 29
@@ -109,7 +106,7 @@ Partial Class Form1
         Me.rbLeft.AutoSize = True
         Me.rbLeft.ForeColor = System.Drawing.Color.Aqua
         Me.rbLeft.Location = New System.Drawing.Point(327, 111)
-        Me.rbLeft.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbLeft.Margin = New System.Windows.Forms.Padding(4)
         Me.rbLeft.Name = "rbLeft"
         Me.rbLeft.Size = New System.Drawing.Size(53, 21)
         Me.rbLeft.TabIndex = 28
@@ -122,7 +119,7 @@ Partial Class Form1
         Me.rbRobot2.AutoSize = True
         Me.rbRobot2.ForeColor = System.Drawing.Color.Aqua
         Me.rbRobot2.Location = New System.Drawing.Point(72, 153)
-        Me.rbRobot2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbRobot2.Margin = New System.Windows.Forms.Padding(4)
         Me.rbRobot2.Name = "rbRobot2"
         Me.rbRobot2.Size = New System.Drawing.Size(79, 21)
         Me.rbRobot2.TabIndex = 27
@@ -135,7 +132,7 @@ Partial Class Form1
         Me.rbRobot1.AutoSize = True
         Me.rbRobot1.ForeColor = System.Drawing.Color.Aqua
         Me.rbRobot1.Location = New System.Drawing.Point(72, 111)
-        Me.rbRobot1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.rbRobot1.Margin = New System.Windows.Forms.Padding(4)
         Me.rbRobot1.Name = "rbRobot1"
         Me.rbRobot1.Size = New System.Drawing.Size(79, 21)
         Me.rbRobot1.TabIndex = 26
@@ -168,7 +165,7 @@ Partial Class Form1
         Me.btnReset.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnReset.ForeColor = System.Drawing.Color.GhostWhite
         Me.btnReset.Location = New System.Drawing.Point(189, 21)
-        Me.btnReset.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReset.Margin = New System.Windows.Forms.Padding(4)
         Me.btnReset.Name = "btnReset"
         Me.btnReset.Size = New System.Drawing.Size(100, 28)
         Me.btnReset.TabIndex = 23
@@ -191,7 +188,7 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.tbTorsoY)
         Me.Panel2.Location = New System.Drawing.Point(791, 220)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(501, 208)
         Me.Panel2.TabIndex = 24
@@ -248,7 +245,7 @@ Partial Class Form1
         '
         Me.tbUnderArm.Location = New System.Drawing.Point(269, 82)
         Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.tbUnderArm.Maximum = 100
+        Me.tbUnderArm.Maximum = 90
         Me.tbUnderArm.Name = "tbUnderArm"
         Me.tbUnderArm.Size = New System.Drawing.Size(209, 56)
         Me.tbUnderArm.TabIndex = 23
@@ -317,7 +314,7 @@ Partial Class Form1
         Me.Panel3.Controls.Add(Me.btnBackward)
         Me.Panel3.Controls.Add(Me.btnForward)
         Me.Panel3.Location = New System.Drawing.Point(791, 437)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(507, 123)
         Me.Panel3.TabIndex = 25
@@ -327,7 +324,7 @@ Partial Class Form1
         Me.btnStop.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnStop.ForeColor = System.Drawing.Color.GhostWhite
         Me.btnStop.Location = New System.Drawing.Point(373, 48)
-        Me.btnStop.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnStop.Margin = New System.Windows.Forms.Padding(4)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(100, 28)
         Me.btnStop.TabIndex = 11
@@ -339,7 +336,7 @@ Partial Class Form1
         Me.btnBackward.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnBackward.ForeColor = System.Drawing.Color.GhostWhite
         Me.btnBackward.Location = New System.Drawing.Point(205, 48)
-        Me.btnBackward.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBackward.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBackward.Name = "btnBackward"
         Me.btnBackward.Size = New System.Drawing.Size(100, 28)
         Me.btnBackward.TabIndex = 10
@@ -351,7 +348,7 @@ Partial Class Form1
         Me.btnForward.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnForward.ForeColor = System.Drawing.Color.GhostWhite
         Me.btnForward.Location = New System.Drawing.Point(35, 48)
-        Me.btnForward.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnForward.Margin = New System.Windows.Forms.Padding(4)
         Me.btnForward.Name = "btnForward"
         Me.btnForward.Size = New System.Drawing.Size(100, 28)
         Me.btnForward.TabIndex = 9
@@ -368,7 +365,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.pbCanvas)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Form1"
         Me.Text = "Hierarchical Model"
         CType(Me.pbCanvas, System.ComponentModel.ISupportInitialize).EndInit()

@@ -14,32 +14,11 @@
     Public calc As Matrix = New Matrix
 
     'parts
-    Public Arm, LArm, Claws, LClaw1, LClaw2 As Listof3DObject
+    Public Arm, LArm, UArm, Claws, LClaw1, LClaw2 As Listof3DObject
 
-    'Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
-    '    Dim a As Double = TrackBar1.Value
-
-    '    Dim Matrix(3, 3) As Double
-    '    Matrix = New Double(3, 3) {
-    '        {1, 0, 0, 0},
-    '        {0, 1, 0, 0},
-    '        {0, 0, 1, 0},
-    '        {0, 0, 0, 1}
-    '    }
-
-    '    Matrix(3, 0) = a / 1000
-    '    World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
-    '    Draw()
-    'End Sub
-
-    'Private Sub TrackBar2_Scroll(sender As Object, e As EventArgs) Handles TrackBar2.Scroll
-    '    Dim a As Double = TrackBar2.Value
-    '    World.Axis = "x"
-    '    World.Rotate(a)
-    '    'World.Nxt.Rotate(a)
-    '    Draw()
-    'End Sub
-
+    'Move
+    Public StartX, StartY As Integer
+    Public Move As Boolean = False
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         btp = New Bitmap(pbCanvas.Width, pbCanvas.Height)
         g = Graphics.FromImage(btp)
@@ -107,6 +86,25 @@
         pbCanvas.Image = btp
     End Sub
 
+    Private Sub pbCanvas_MouseDown(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseDown
+        Move = True
+        StartX = e.X
+        StartY = e.Y
+
+    End Sub
+
+    Private Sub pbCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseUp
+        Move = False
+    End Sub
+
+    Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
+        If Move Then
+            Robot.Rotate(StartX - e.X, "y")
+            Robot.Rotate(StartY - e.Y, "x")
+            Draw()
+        End If
+    End Sub
+
     Sub InitObject()
         'New(xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
         Robot = New Listof3DObject
@@ -115,14 +113,18 @@
         Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
 
         Arm = New Listof3DObject
-        Arm.Create(-1.5, 0.75, 0)
-        Arm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
+        Arm.Create(0, 0, 0)
         Robot.Child = Arm
+
+        UArm = New Listof3DObject
+        UArm.Create(-1.5, 0.75, 0)
+        UArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
+        Arm.Child = UArm
 
         LArm = New Listof3DObject
         LArm.Create(-0.25, -0.25, 0)
         LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
-        Arm.Child = LArm
+        UArm.Child = LArm
 
         Claws = New Listof3DObject
         Claws.Create(0, 0, 0)
@@ -228,7 +230,7 @@
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
-        Arm.Rotate(-a, "z")
+        Arm.Rotate(a, "z")
         Draw()
     End Sub
 
@@ -277,25 +279,16 @@
 
     'panah
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
-        Dim Matrix(3, 3) As Double
-        Matrix = New Double(3, 3) {
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, 0},
-            {0, 0, 0, 1}
-        }
 
         'detect up arrow key
         If keyData = Keys.Up Then
-            Matrix(3, 2) = 0.1 'y
-            Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
+            Robot.Scale(0.1)
             Draw()
             Return True
         End If
         'detect down arrow key
         If keyData = Keys.Down Then
-            Matrix(3, 2) = -0.1 'y
-            Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
+            Robot.Scale(-0.1)
             Draw()
             Return True
         End If
@@ -320,10 +313,6 @@
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        'timer
-    End Sub
 
 End Class
 
@@ -390,6 +379,7 @@ Public Class Listof3DObject
     Public Transform(3, 3) As Double
 
     Public Alphax, Alphay, Alphaz As Double
+    Public Translate As Double = 0
 
     Public Sub Create(x As Double, y As Double, z As Double)
         Alphax = 0
@@ -439,14 +429,52 @@ Public Class Listof3DObject
                 }
         ElseIf (Axis = "z") Then
             t1 = New Double(3, 3) {
-                    {costet, -sintet, 0, 0},
-                    {sintet, costet, 0, 0},
+                    {costet, sintet, 0, 0},
+                    {-sintet, costet, 0, 0},
                     {0, 0, 1, 0},
                     {0, 0, 0, 1}
                 }
         End If
 
         Transform = calc.MatrixMultiplication(t1, Transform)
+    End Sub
+
+    Public Sub Translateto(newest As Double, Axis As Char)
+        Dim current As Double
+        current = newest - Translate
+        Translate = newest
+
+        Dim Matrix(3, 3) As Double
+        Matrix = New Double(3, 3) {
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        }
+
+        If (Axis = "x") Then
+            Matrix(3, 0) = current
+        ElseIf (Axis = "y") Then
+            Matrix(3, 1) = current
+        ElseIf (Axis = "z") Then
+            Matrix(3, 2) = current
+        End If
+
+        Transform = calc.MatrixMultiplication(Matrix, Transform)
+    End Sub
+
+    Sub Scale(value As Double)
+        Dim Matrix(3, 3) As Double
+        Matrix = New Double(3, 3) {
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        }
+
+        Matrix(3, 2) = value
+
+        Transform = calc.MatrixMultiplication(Matrix, Transform)
     End Sub
 End Class
 
