@@ -9,9 +9,12 @@
     Public Stack As New Stack
 
     Public Vt(3, 3), Vpervective(3, 3), St(3, 3) As Double
-    Public World As New Listof3DObject
+    Public Robot As New Listof3DObject
 
     Public calc As Matrix = New Matrix
+
+    'parts
+    Public Arm, LArm, Claw As Listof3DObject
 
     'Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
     '    Dim a As Double = TrackBar1.Value
@@ -57,7 +60,7 @@
 
         Stack.Push(temp)
 
-        Process(World)
+        Process(Robot)
     End Sub
 
     Sub Process(start As Listof3DObject)
@@ -66,7 +69,6 @@
         While Not IsNothing(start)
             T = calc.MatrixMultiplication(start.Transform, Stack.Peek())
             Stack.Push(T)
-
 
             Process(start.Child)
 
@@ -102,23 +104,29 @@
     End Sub
 
     Sub InitObject()
-        'create (x As Double, y As Double, z As Double, Axis As Char)
-        'object3d (xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
-        World = New Listof3DObject
-        World.Create(-3, -1, 0, "y")
-        World.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
 
-        World.Child = New Listof3DObject
-        World.Child.Create(-1.5, 0.75, 0, "x")
-        World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
+        Robot = New Listof3DObject
 
-        World.Child.Child = New Listof3DObject
-        World.Child.Child.Create(-0.25, -0.25, 0, "z")
-        World.Child.Child.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
+        Robot.Create(0, 0, 0, "y") 'body
+        Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
 
-        World.Child.Child = New Listof3DObject
-        World.Child.Child.Child.Create(-0.25, -0.25, 0, "z")
-        World.Child.Child.Child.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
+        Arm = New Listof3DObject
+        Arm.Create(-1.5, 0.75, 0, "x")
+        Arm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
+        Robot.Child = Arm
+
+        LArm = New Listof3DObject
+        LArm.Create(-0.25, -0.25, 0, "z")
+        LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
+        Arm.Child = LArm
+
+        'World.Child = New Listof3DObject
+        'World.Child.Create(-1.5, 0.75, 0, "x")
+        'World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
+
+        'World.Child.Child = New Listof3DObject
+        'World.Child.Child.Create(-0.25, -0.25, 0, "z")
+        'World.Child.Child.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
 
         'codingan  tahun lalu
         'RUpperArm = New TElmtList3DObject(-0.25, -0.25, 0, "z", 0)
@@ -181,6 +189,18 @@
         'LClaw2.Child.First = Nothing
     End Sub
 
+    Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
+        Dim a As Double = tbUnderArm.Value
+        LArm.Rotate(-a)
+        Draw()
+    End Sub
+
+    Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
+        Dim a As Double = tbUpperArm.Value
+        Arm.Rotate(-a)
+        Draw()
+    End Sub
+
     Sub InitValue()
         Dim vt1(3, 3), vt2(3, 3), st1(3, 3), st2(3, 3) As Double
 
@@ -237,14 +257,14 @@
         'detect up arrow key
         If keyData = Keys.Up Then
             Matrix(3, 2) = 0.1 'y
-            World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
+            Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
             Draw()
             Return True
         End If
         'detect down arrow key
         If keyData = Keys.Down Then
             Matrix(3, 2) = -0.1 'y
-            World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
+            Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
             Draw()
             Return True
         End If
@@ -252,7 +272,7 @@
         If keyData = Keys.Left Then
             Deg = Deg - 1
 
-            World.Rotate(Deg)
+            Robot.Rotate(Deg)
             Draw()
             Return True
         End If
@@ -260,7 +280,7 @@
         If keyData = Keys.Right Then
             Deg = Deg + 1
 
-            World.Rotate(Deg)
+            Robot.Rotate(Deg)
             Draw()
             'Matrix(3, 0) = 0.1
             'World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
