@@ -214,15 +214,15 @@
         vt2 = New Double(3, 3) {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
-            {0, 0, 0, 0},
+            {0, 0, 0, 0}, 'z=0
             {0, 0, 0, 1}
         }
 
         Vpervective = calc.MatrixMultiplication(vt1, vt2)
 
         st1 = New Double(3, 3) {
-            {30, 0, 0, 0},
-            {0, -30, 0, 0},
+            {30, 0, 0, 0},  'right
+            {0, -30, 0, 0}, 'below
             {0, 0, 0, 0},
             {0, 0, 0, 1}
         }
@@ -231,7 +231,7 @@
             {1, 0, 0, 0},
             {0, 1, 0, 0},
             {0, 0, 1, 0},
-            {325, 200, 0, 1}
+            {300, 200, 0, 1} 'translation to x and y
         }
 
         St = calc.MatrixMultiplication(st1, st2)
@@ -256,14 +256,14 @@
 
         'detect up arrow key
         If keyData = Keys.Up Then
-            Matrix(3, 2) = 0.1
+            Matrix(3, 2) = 0.1 'y
             Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
             Draw()
             Return True
         End If
         'detect down arrow key
         If keyData = Keys.Down Then
-            Matrix(3, 2) = -0.1
+            Matrix(3, 2) = -0.1 'y
             Robot.Transform = calc.MatrixMultiplication(Matrix, Robot.Transform)
             Draw()
             Return True
