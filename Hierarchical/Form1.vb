@@ -14,7 +14,7 @@
     Public calc As Matrix = New Matrix
 
     'parts
-    Public Arm, LArm, Claw As Listof3DObject
+    Public Arm, LArm, LClaw1, LClaw2 As Listof3DObject
 
     'Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
     '    Dim a As Double = TrackBar1.Value
@@ -104,7 +104,7 @@
     End Sub
 
     Sub InitObject()
-
+        'New(xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
         Robot = New Listof3DObject
 
         Robot.Create(0, 0, 0) 'body
@@ -120,6 +120,16 @@
         LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
         Arm.Child = LArm
 
+
+        LClaw1 = New Listof3DObject
+        LClaw1.Create(-0.5, -0.2, 0)
+        LClaw1.Object3D = New Object3D(0.25, -1.3, -0.2, 0.35, -0.8, 0.2)
+        LArm.Child = LClaw1
+
+        LClaw2 = New Listof3DObject
+        LClaw2.Create(-0.5, -0.2, 0)
+        LClaw2.Object3D = New Object3D(1.15, -1.1, -0.2, 1.25, -0.6, 0.2)
+        LClaw1.Child = LClaw2
         'World.Child = New Listof3DObject
         'World.Child.Create(-1.5, 0.75, 0, "x")
         'World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
@@ -189,15 +199,27 @@
         'LClaw2.Child.First = Nothing
     End Sub
 
+    Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
+        Dim a As Double = tbClaw.Value
+        LClaw1.Rotate(-a, "y")
+        Draw()
+    End Sub
+
+    Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
+        Dim a As Double = tbTweeze.Value
+        LClaw1.Rotate(-a, "z")
+        Draw()
+    End Sub
+
     Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
         Dim a As Double = tbUnderArm.Value
-        Arm.Rotate(-a, "x")
+        LArm.Rotate(-a, "x")
         Draw()
     End Sub
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
-        LArm.Rotate(-a, "z")
+        Arm.Rotate(-a, "z")
         Draw()
     End Sub
 
