@@ -107,16 +107,16 @@
 
         Robot = New Listof3DObject
 
-        Robot.Create(0, 0, 0, "y") 'body
+        Robot.Create(0, 0, 0) 'body
         Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
 
         Arm = New Listof3DObject
-        Arm.Create(-1.5, 0.75, 0, "x")
+        Arm.Create(-1.5, 0.75, 0)
         Arm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
         Robot.Child = Arm
 
         LArm = New Listof3DObject
-        LArm.Create(-0.25, -0.25, 0, "z")
+        LArm.Create(-0.25, -0.25, 0)
         LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
         Arm.Child = LArm
 
@@ -191,13 +191,13 @@
 
     Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
         Dim a As Double = tbUnderArm.Value
-        LArm.Rotate(-a)
+        Arm.Rotate(-a, "x")
         Draw()
     End Sub
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
-        Arm.Rotate(-a)
+        LArm.Rotate(-a, "z")
         Draw()
     End Sub
 
@@ -272,7 +272,7 @@
         If keyData = Keys.Left Then
             Deg = Deg - 1
 
-            Robot.Rotate(Deg)
+            Robot.Rotate(Deg, "y")
             Draw()
             Return True
         End If
@@ -280,7 +280,7 @@
         If keyData = Keys.Right Then
             Deg = Deg + 1
 
-            Robot.Rotate(Deg)
+            Robot.Rotate(Deg, "y")
             Draw()
             'Matrix(3, 0) = 0.1
             'World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
@@ -358,11 +358,12 @@ Public Class Listof3DObject
     Public Nxt As Listof3DObject
     Public Transform(3, 3) As Double
 
-    Public Axis As Char
-    Public Alpha As Double
+    Public Alphax, Alphay, Alphaz As Double
 
-    Public Overloads Sub Create(x As Double, y As Double, z As Double, Axis As Char)
-        Me.Axis = Axis
+    Public Sub Create(x As Double, y As Double, z As Double)
+        Alphax = 0
+        Alphay = 0
+        Alphaz = 0
 
         Transform = New Double(3, 3) {
                 {1, 0, 0, 0},
@@ -372,63 +373,48 @@ Public Class Listof3DObject
             }
     End Sub
 
-    Public Overloads Sub Create(x As Double, y As Double, z As Double, Axis As Char, Alpha As Double)
-        Me.Axis = Axis
-        Me.Alpha = Alpha
+    Public Sub Rotate(tet As Double, Axis As Char)
+        Dim t1(3, 3) As Double
+        Dim deg, sintet, costet As Double
 
-        Dim t1(3, 3), t2(3, 3) As Double
+        If Axis = "x" Then
+            deg = tet - Alphax
+            Alphax = tet
+        ElseIf Axis = "y" Then
+            deg = tet - Alphay
+            Alphay = tet
+        ElseIf Axis = "z" Then
+            deg = tet - Alphaz
+            Alphaz = tet
+        End If
 
-        t1 = New Double(3, 3) {
-                {1, 0, 0, 0},
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {x, y, z, 1}
-            }
-
-        SetRotationMatrix(t2, Alpha)
-
-        Transform = calc.MatrixMultiplication(t2, t1)
-    End Sub
-
-    Sub SetRotationMatrix(ByRef mx As Double(,), tet As Double)
-
-        Dim sintet, costet, degtorad As Double
-        degtorad = Math.PI * (tet / 180)
-        sintet = Math.Sin(degtorad)
-        costet = Math.Cos(degtorad)
+        deg = Math.PI * (deg / 180)
+        sintet = Math.Sin(deg)
+        costet = Math.Cos(deg)
 
         If (Axis = "x") Then
-            mx = New Double(3, 3) {
+            t1 = New Double(3, 3) {
                     {1, 0, 0, 0},
                     {0, costet, sintet, 0},
                     {0, -sintet, costet, 0},
                     {0, 0, 0, 1}
                 }
         ElseIf (Axis = "y") Then
-            mx = New Double(3, 3) {
+            t1 = New Double(3, 3) {
                     {costet, 0, -sintet, 0},
                     {0, 1, 0, 0},
                     {sintet, 0, costet, 0},
                     {0, 0, 0, 1}
                 }
         ElseIf (Axis = "z") Then
-            mx = New Double(3, 3) {
+            t1 = New Double(3, 3) {
                     {costet, sintet, 0, 0},
                     {-sintet, costet, 0, 0},
                     {0, 0, 1, 0},
                     {0, 0, 0, 1}
                 }
         End If
-    End Sub
 
-    Sub Rotate(tet As Double)
-        Dim deg As Double
-        deg = tet - Alpha
-        Alpha = tet
-
-        Dim t1(3, 3) As Double
-
-        SetRotationMatrix(t1, deg)
         Transform = calc.MatrixMultiplication(t1, Transform)
     End Sub
 End Class
