@@ -101,7 +101,8 @@
     End Sub
 
     Sub InitObject()
-
+        'create (x As Double, y As Double, z As Double, Axis As Char)
+        'object3d (xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
         World = New Listof3DObject
         World.Create(-3, -1, 0, "y")
         World.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
@@ -111,7 +112,7 @@
         World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
 
         World.Child.Child = New Listof3DObject
-        World.Child.Child.Create(-0.25, -0.25, 0, "z")
+        World.Child.Child.Create(-1.5, 0.76, 0, "x")
         World.Child.Child.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
 
         'codingan  tahun lalu
@@ -188,15 +189,15 @@
         vt2 = New Double(3, 3) {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
-            {0, 0, 0, 0},
+            {0, 0, 0, 0}, 'z=0
             {0, 0, 0, 1}
         }
 
         Vpervective = calc.MatrixMultiplication(vt1, vt2)
 
         st1 = New Double(3, 3) {
-            {30, 0, 0, 0},
-            {0, -30, 0, 0},
+            {30, 0, 0, 0},  'right
+            {0, -30, 0, 0}, 'below
             {0, 0, 0, 0},
             {0, 0, 0, 1}
         }
@@ -205,7 +206,7 @@
             {1, 0, 0, 0},
             {0, 1, 0, 0},
             {0, 0, 1, 0},
-            {325, 200, 0, 1}
+            {300, 200, 0, 1} 'translation to x and y
         }
 
         St = calc.MatrixMultiplication(st1, st2)
@@ -230,14 +231,14 @@
 
         'detect up arrow key
         If keyData = Keys.Up Then
-            Matrix(3, 2) = 0.1
+            Matrix(3, 2) = 0.1 'y
             World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
             Draw()
             Return True
         End If
         'detect down arrow key
         If keyData = Keys.Down Then
-            Matrix(3, 2) = -0.1
+            Matrix(3, 2) = -0.1 'y
             World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
             Draw()
             Return True
