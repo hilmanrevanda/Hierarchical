@@ -229,7 +229,7 @@ Partial Class Form1
         '
         Me.tbClaw.Location = New System.Drawing.Point(21, 143)
         Me.tbClaw.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.tbClaw.Maximum = 100
+        Me.tbClaw.Maximum = 360
         Me.tbClaw.Name = "tbClaw"
         Me.tbClaw.Size = New System.Drawing.Size(209, 56)
         Me.tbClaw.TabIndex = 25
@@ -267,7 +267,7 @@ Partial Class Form1
         '
         Me.tbUpperArm.Location = New System.Drawing.Point(21, 82)
         Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.tbUpperArm.Maximum = 100
+        Me.tbUpperArm.Maximum = 90
         Me.tbUpperArm.Name = "tbUpperArm"
         Me.tbUpperArm.Size = New System.Drawing.Size(209, 56)
         Me.tbUpperArm.TabIndex = 21

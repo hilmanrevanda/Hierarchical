@@ -14,7 +14,7 @@
     Public calc As Matrix = New Matrix
 
     'parts
-    Public Arm, LArm, LClaw1, LClaw2 As Listof3DObject
+    Public Arm, LArm, Claws, LClaw1, LClaw2 As Listof3DObject
 
     'Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
     '    Dim a As Double = TrackBar1.Value
@@ -91,7 +91,11 @@
                     point2.X = points(start.Object3D.edges(i).p2).x / points(start.Object3D.edges(i).p2).w
                     point2.Y = points(start.Object3D.edges(i).p2).y / points(start.Object3D.edges(i).p2).w
 
-                    g.DrawLine(Pens.Black, point1, point2)
+                    If i <= 3 Then
+                        g.DrawLine(Pens.Red, point1, point2)
+                    Else
+                        g.DrawLine(Pens.Black, point1, point2)
+                    End If
                 Next
 
             Else
@@ -120,16 +124,20 @@
         LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
         Arm.Child = LArm
 
+        Claws = New Listof3DObject
+        Claws.Create(0, 0, 0)
+        LArm.Child = Claws
 
         LClaw1 = New Listof3DObject
         LClaw1.Create(-0.5, -0.2, 0)
-        LClaw1.Object3D = New Object3D(0.25, -1.3, -0.2, 0.35, -0.8, 0.2)
-        LArm.Child = LClaw1
+        LClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        Claws.Child = LClaw1
 
         LClaw2 = New Listof3DObject
         LClaw2.Create(-0.5, -0.2, 0)
-        LClaw2.Object3D = New Object3D(0.65, -1.3, -0.2, 0.75, -0.8, 0.2)
+        LClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
         LClaw1.Nxt = LClaw2
+
         'World.Child = New Listof3DObject
         'World.Child.Create(-1.5, 0.75, 0, "x")
         'World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
@@ -201,7 +209,7 @@
 
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
         Dim a As Double = tbClaw.Value
-        LClaw1.Rotate(-a, "y")
+        Claws.Rotate(-a, "y")
         Draw()
     End Sub
 
@@ -431,8 +439,8 @@ Public Class Listof3DObject
                 }
         ElseIf (Axis = "z") Then
             t1 = New Double(3, 3) {
-                    {costet, sintet, 0, 0},
-                    {-sintet, costet, 0, 0},
+                    {costet, -sintet, 0, 0},
+                    {sintet, costet, 0, 0},
                     {0, 0, 1, 0},
                     {0, 0, 0, 1}
                 }
