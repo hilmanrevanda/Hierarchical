@@ -128,8 +128,8 @@
 
         LClaw2 = New Listof3DObject
         LClaw2.Create(-0.5, -0.2, 0)
-        LClaw2.Object3D = New Object3D(1.15, -1.1, -0.2, 1.25, -0.6, 0.2)
-        LClaw1.Child = LClaw2
+        LClaw2.Object3D = New Object3D(0.65, -1.3, -0.2, 0.75, -0.8, 0.2)
+        LClaw1.Nxt = LClaw2
         'World.Child = New Listof3DObject
         'World.Child.Create(-1.5, 0.75, 0, "x")
         'World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
@@ -207,7 +207,8 @@
 
     Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
         Dim a As Double = tbTweeze.Value
-        LClaw1.Rotate(-a, "z")
+        LClaw1.Rotate(a, "z")
+        LClaw2.Rotate(-a, "z")
         Draw()
     End Sub
 
