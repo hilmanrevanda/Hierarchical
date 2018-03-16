@@ -8,102 +8,6 @@
     'baru
     Public Stack As New Stack
 
-<<<<<<< HEAD
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        'degree += 20
-        'If axis = "x" Then
-        '    rotateX(TrackBar1.Value)
-        'ElseIf axis = "y" Then
-        '    rotateY(TrackBar1.Value)
-        'ElseIf axis = "z" Then
-        '    rotateX(TrackBar1.Value) 'ganti jadi z
-        'End If
-
-        'drawCube()
-    End Sub
-
-    Private Sub btnForward_Click(sender As Object, e As EventArgs)
-        'Dim MoveForward(3, 3) As Double
-        'MoveForward = New Double(3, 3) {
-        '{1, 0, 0, 0},
-        '{0, 1, 0, 0},
-        '{0, 0, 0, 0.1},
-        '{0, 0, 0, 1}
-        '}
-
-        'vr = multiplication(vr, MoveForward)
-        'Timer1.Enabled = True
-    End Sub
-
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs)
-        'Dim MoveBackward(3, 3) As Double
-        'MoveBackward = New Double(3, 3) {
-        '{1, 0, 0, 0},
-        '{0, 1, 0, 0},
-        '{0, 0, 0, 0.1},
-        '{0, 0, 0, 1}
-        '}
-
-        'vr = multiplication(vr, MoveBackward)
-        'Timer1.Enabled = True
-    End Sub
-
-    Private Sub btnStop_Click(sender As Object, e As EventArgs)
-        'Timer1.Enabled = False
-    End Sub
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        btp = New Bitmap(pbCanvas.Width, pbCanvas.Height)
-        g = Graphics.FromImage(btp)
-        g.Clear(Color.White)
-
-        For i As Integer = 0 To 1
-            World.Add(New Robot)  ' Init new robot
-
-            World.Last.Robot.Add(New LBox) 'Body
-            World.Last.Robot.Last.LBox.Add(New Box)
-            World.Last.Robot.Last.LBox.Last.scale(50)
-            World.Last.Robot.Last.LBox.Last.translate(200, 200, 0)
-
-            World.Last.Robot.Add(New LBox) 'Right Arm
-            World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(265, 190, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(265, 220, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) 'left claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(260, 240, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) 'right claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(270, 240, 0)
-
-            World.Last.Robot.Add(New LBox) 'Left Arm
-            World.Last.Robot.Last.LBox.Add(New Box) ' Upper arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(135, 190, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) ' Lower arm
-            World.Last.Robot.Last.LBox.Last.scale(15)
-            World.Last.Robot.Last.LBox.Last.translate(135, 220, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) 'left claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(130, 240, 0)
-
-            World.Last.Robot.Last.LBox.Add(New Box) 'right claw
-            World.Last.Robot.Last.LBox.Last.scale(5)
-            World.Last.Robot.Last.LBox.Last.translate(140, 240, 0)
-
-            World.Last.Translate(-200 * i, 0, 0)
-        Next
-        Timer1.Enabled = False
-        drawCube()
-=======
     Public Vt(3, 3), Vpervective(3, 3), St(3, 3) As Double
     Public World As New Listof3DObject
 
@@ -194,7 +98,6 @@
             start = start.Nxt
         End While
         pbCanvas.Image = btp
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
     End Sub
 
     Sub InitObject()
@@ -272,14 +175,6 @@
         'LClaw2.Child.First = Nothing
     End Sub
 
-<<<<<<< HEAD
-    Private Sub tbTorsoY_Scroll(sender As Object, e As EventArgs) Handles tbTorsoY.Scroll
-        For Each item In World
-            item.RotateX(tbTorsoY.Value)
-        Next
-        'Boxes(0).rotateY(tbTorsoY.Value)
-        'Boxes(1).rotateY(tbTorsoY.Value)
-=======
     Sub InitValue()
         Dim vt1(3, 3), vt2(3, 3), st1(3, 3), st2(3, 3) As Double
 
@@ -289,7 +184,6 @@
             {0, 0, 1, -0.125},
             {0, 0, 0, 1}
         }
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
 
         vt2 = New Double(3, 3) {
             {1, 0, 0, 0},
@@ -307,11 +201,6 @@
             {0, 0, 0, 1}
         }
 
-<<<<<<< HEAD
-End Class
-
-Public Class Tpoint
-=======
         st2 = New Double(3, 3) {
             {1, 0, 0, 0},
             {0, 1, 0, 0},
@@ -382,7 +271,6 @@ Public Class Tpoint
 End Class
 
 Public Class pnt 'point
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
     Public x, y, z, w As Double
 
     Public Sub New(x As Double, y As Double, z As Double, w As Double)
@@ -392,13 +280,9 @@ Public Class pnt 'point
         Me.w = w
     End Sub
 
-<<<<<<< HEAD
-Public Class LineIndex
-=======
 End Class
 
 Public Class edge
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
     Public p1, p2 As Integer
 
     Sub New(p1 As Integer, p2 As Integer)
@@ -407,61 +291,6 @@ Public Class edge
     End Sub
 End Class
 
-<<<<<<< HEAD
-Public Class Box
-    Public edges As List(Of LineIndex) = New List(Of LineIndex)
-    Public view(3, 3), screen(3, 3) As Double
-    Public alpha As Integer = 0
-    Public v As List(Of Tpoint) = New List(Of Tpoint)
-    Public vr As List(Of Tpoint) = New List(Of Tpoint)
-    Public vs As List(Of Tpoint) = New List(Of Tpoint)
-
-    Sub New()
-        v.Add(New Tpoint(-1, -1, 1, 1)) '1
-        v.Add(New Tpoint(1, -1, 1, 1)) '2
-        v.Add(New Tpoint(1, -1, -1, 1)) '3
-        v.Add(New Tpoint(-1, -1, -1, 1)) '4
-        v.Add(New Tpoint(-1, 1, 1, 1)) '5
-        v.Add(New Tpoint(1, 1, 1, 1)) '6
-        v.Add(New Tpoint(1, 1, -1, 1)) '7
-        v.Add(New Tpoint(-1, 1, -1, 1)) '8
-
-        edges.Add(New LineIndex(0, 1)) '1
-        edges.Add(New LineIndex(1, 2)) '2
-        edges.Add(New LineIndex(2, 3)) '3
-        edges.Add(New LineIndex(3, 0)) '4
-        edges.Add(New LineIndex(0, 4)) '5
-        edges.Add(New LineIndex(1, 5)) '6
-        edges.Add(New LineIndex(2, 6)) '7
-        edges.Add(New LineIndex(3, 7)) '8
-        edges.Add(New LineIndex(4, 5)) '9
-        edges.Add(New LineIndex(5, 6)) '10
-        edges.Add(New LineIndex(6, 7)) '11
-        edges.Add(New LineIndex(7, 4)) '12
-
-        view = New Double(3, 3) {
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, -0.125},
-            {0, 0, 0, 1}
-        }
-
-        screen = New Double(3, 3) {
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 1}
-        }
-
-        vr = multiplication(v, view)
-        vs = multiplication(vr, screen)
-    End Sub
-
-    Sub translate(x As Integer, y As Integer, z As Integer)
-        screen(0, 3) = x
-        screen(1, 3) = y
-        screen(2, 3) = z
-=======
 
 Public Class Object3D
     Public edges As List(Of edge) = New List(Of edge)
@@ -473,7 +302,6 @@ Public Class Object3D
 
         vertices.Add(New pnt(xmax, ymin, zmax, 1))
         vertices.Add(New pnt(xmin, ymin, zmax, 1))
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
 
         vertices.Add(New pnt(xmin, ymax, zmin, 1))
         vertices.Add(New pnt(xmax, ymax, zmin, 1))
@@ -507,48 +335,6 @@ Public Class Listof3DObject
     Public Axis As Char
     Public Alpha As Double
 
-<<<<<<< HEAD
-        SetRotationMatrix(t1, deg, 1)
-        t2 = view
-        view = MatrixMultiplication(t1, t2)
-        vr = multiplication(v, view)
-        vs = multiplication(vr, screen)
-    End Sub
-
-    Sub SetRotationMatrix(ByRef mx As Double(,), tet As Double, ax As Integer)
-        Dim sintet, costet, degtorad As Double
-        degtorad = Math.PI * (tet / 180)
-        sintet = Math.Sin(degtorad)
-        costet = Math.Cos(degtorad)
-
-        If ax = 1 Then
-            mx = {
-                {1, 0, 0, 0},
-                {0, costet, sintet, 0},
-                {0, -sintet, costet, 0},
-                {0, 0, 0, 1}
-            }
-        ElseIf ax = 0 Then
-            mx = {
-                {costet, 0, -sintet, 0},
-                {0, 1, 0, 0},
-                {sintet, 0, costet, 0},
-                {0, 0, 0, 1}
-            }
-        End If
-    End Sub
-
-    Sub rotateY(tet As Double)
-        'Dim sintet, costet, degtorad As Double
-        'degtorad = Math.PI * (deg / 180)
-        'sintet = Math.Sin(degtorad)
-        'costet = Math.Cos(degtorad)
-
-        'view(0, 0) = costet
-        'view(0, 2) = -sintet
-        'view(2, 0) = sintet
-        'view(2, 2) = costet
-=======
     Public Overloads Sub Create(x As Double, y As Double, z As Double, Axis As Char)
         Me.Axis = Axis
 
@@ -565,7 +351,6 @@ Public Class Listof3DObject
         Me.Alpha = Alpha
 
         Dim t1(3, 3), t2(3, 3) As Double
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
 
         t1 = New Double(3, 3) {
                 {1, 0, 0, 0},
@@ -579,14 +364,6 @@ Public Class Listof3DObject
         Transform = calc.MatrixMultiplication(t2, t1)
     End Sub
 
-<<<<<<< HEAD
-        SetRotationMatrix(t1, deg, 0)
-        t2 = view
-        view = MatrixMultiplication(t1, t2)
-        vr = multiplication(v, view)
-        vs = multiplication(vr, screen)
-    End Sub
-=======
     Sub SetRotationMatrix(ByRef mx As Double(,), tet As Double)
 
         Dim sintet, costet, degtorad As Double
@@ -622,7 +399,6 @@ Public Class Listof3DObject
         Dim deg As Double
         deg = tet - Alpha
         Alpha = tet
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
 
         Dim t1(3, 3) As Double
 
@@ -643,54 +419,6 @@ Public Class Matrix
         Return temp
     End Function
 
-<<<<<<< HEAD
-    Sub RotateX(deg As Double)
-        For Each Boxes In Robot
-            For Each Box In Boxes.LBox
-                Box.rotateX(deg)
-            Next
-        Next
-    End Sub
-
-    Sub RotateY(deg As Double)
-        For Each Boxes In Robot
-            For Each Box In Boxes.LBox
-                Box.rotateY(deg)
-            Next
-        Next
-    End Sub
-
-    Sub Translate(X As Integer, Y As Integer, Z As Integer)
-        For Each Boxes In Robot
-            For Each Box In Boxes.LBox
-
-                Box.translate(Box.screen(0, 3) - X, Box.screen(1, 3) - Y, Box.screen(2, 3) - Z)
-            Next
-        Next
-    End Sub
-End Class
-
-'Public Class Object3D 'Cuboid contains array of vertices and array of edges
-'Public vertices(7) As Point
-'Public edges(11) As Line
-''Sub SetPoint(index As Integer, x As Double, y As Double, z As Double)
-'vertices(index) = New Point(x, y, z, 1)
-'End Sub
-'End Class
-
-'Public Class List3DObject
-'Public First As ElmtList3DObject
-'End Class
-
-'Public Class ElmtList3DObject
-'Public Child As List3DObject
-'Public Nxt As ElmtList3DObject
-'Public Axisrot As Char
-'Public alpha As Double
-'Public Obj As Object3D
-'Public Transform(3, 3) As Double
-'End Class
-=======
     Function MultiplyPointMatrix(Point As pnt, Marix(,) As Double) As pnt
         Return New pnt(Point.x * Marix(0, 0) + Point.y * Marix(1, 0) + Point.z * Marix(2, 0) + Point.w * Marix(3, 0),
                        Point.x * Marix(0, 1) + Point.y * Marix(1, 1) + Point.z * Marix(2, 1) + Point.w * Marix(3, 1),
@@ -698,4 +426,3 @@ End Class
                        Point.x * Marix(0, 3) + Point.y * Marix(1, 3) + Point.z * Marix(2, 3) + Point.w * Marix(3, 3))
     End Function
 End Class
->>>>>>> 2688fd6c0e8c2c2568a09e3f0368466c4c282624
