@@ -9,7 +9,7 @@
     Public Stack As New Stack
 
     Public Vt(3, 3), Vpervective(3, 3), St(3, 3) As Double
-    Public Robot As New Listof3DObject
+    Public Robot, Robot2 As New Listof3DObject
 
     Public calc As Matrix = New Matrix
 
@@ -101,6 +101,9 @@
         If Move Then
             Robot.Rotate(StartX - e.X, "y")
             Robot.Rotate(StartY - e.Y, "x")
+
+            Robot2.Rotate(StartX - e.X, "y")
+            Robot2.Rotate(StartY - e.Y, "x")
             Draw()
         End If
     End Sub
@@ -139,6 +142,15 @@
         LClaw2.Create(-0.5, -0.2, 0)
         LClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
         LClaw1.Nxt = LClaw2
+
+
+        'robot2
+        Robot2 = New Listof3DObject
+
+        Robot2.Create(0, 0, 0) 'body
+        Robot2.Object3D = New Object3D(-2.5, -2, -2, 2.5, 2, 2)
+
+        Robot.Nxt = Robot2
 
         'World.Child = New Listof3DObject
         'World.Child.Create(-1.5, 0.75, 0, "x")
@@ -217,8 +229,11 @@
 
     Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
         Dim a As Double = tbTweeze.Value
-        LClaw1.Rotate(a, "z")
-        LClaw2.Rotate(-a, "z")
+        'LClaw1.Rotate(a, "z")
+        'LClaw2.Rotate(-a, "z")
+
+        LClaw1.Translateto(tbTweeze.Value / 100, "x")
+        LClaw2.Translateto(-tbTweeze.Value / 100, "x")
         Draw()
     End Sub
 

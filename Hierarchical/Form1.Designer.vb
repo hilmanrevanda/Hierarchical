@@ -207,7 +207,7 @@ Partial Class Form1
         '
         Me.tbTweeze.Location = New System.Drawing.Point(269, 143)
         Me.tbTweeze.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.tbTweeze.Maximum = 7
+        Me.tbTweeze.Maximum = 5
         Me.tbTweeze.Name = "tbTweeze"
         Me.tbTweeze.Size = New System.Drawing.Size(209, 56)
         Me.tbTweeze.TabIndex = 27
