@@ -93,6 +93,16 @@
 
     End Sub
 
+    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
+        Robot.Scale(0.1)
+        Draw()
+    End Sub
+
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
+        Robot.Scale(-0.1)
+        Draw()
+    End Sub
+
     Private Sub pbCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseUp
         Move = False
     End Sub
