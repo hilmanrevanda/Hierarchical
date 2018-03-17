@@ -115,14 +115,10 @@
         Robot.Create(0, 0, 0) 'body
         Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
 
-        Arm = New Listof3DObject
-        Arm.Create(0, 0, 0)
-        Robot.Child = Arm
-
         UArm = New Listof3DObject
         UArm.Create(-1.5, 0.75, 0)
         UArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
-        Arm.Child = UArm
+        Robot.Child = UArm
 
         LArm = New Listof3DObject
         LArm.Create(-0.25, -0.25, 0)
@@ -245,7 +241,7 @@
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
-        Arm.Rotate(a, "z")
+        UArm.Rotate(-a, "z")
         Draw()
     End Sub
 
