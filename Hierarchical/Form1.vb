@@ -1,7 +1,7 @@
 ﻿Public Class Form1
     Dim btp As Bitmap
     Dim g As Graphics
-
+    Dim last As Double = 0
     'belok
     Public Deg As Integer = 0
 
@@ -14,7 +14,7 @@
     Public calc As Matrix = New Matrix
 
     'parts
-    Public Arm, LArm, UArm, Claws, LClaw1, LClaw2 As Listof3DObject
+    Public Arm, RLArm, RUArm, RClaws, RLClaw1, RLClaw2, LLArm, LUArm, LClaws, LLClaw1, LLClaw2 As Listof3DObject
 
     'Move
     Public StartX, StartY As Integer
@@ -114,39 +114,65 @@
 
         Robot.Create(0, 0, 0) 'body
         Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
+        'Robot.Translateto(2, "z")
+        Robot.Scale(3)
 
-        UArm = New Listof3DObject
-        UArm.Create(-1.5, 0.75, 0)
-        UArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
-        Robot.Child = UArm
+        RUArm = New Listof3DObject
+        RUArm.Create(-1.5, 0.75, 0)
+        RUArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
+        Robot.Child = RUArm
 
-        LArm = New Listof3DObject
-        LArm.Create(-0.25, -0.25, 0)
-        LArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
-        UArm.Child = LArm
+        RLArm = New Listof3DObject
+        RLArm.Create(-0.25, -0.25, 0)
+        RLArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
+        RUArm.Child = RLArm
 
-        Claws = New Listof3DObject
-        Claws.Create(0, 0, 0)
-        LArm.Child = Claws
+        RClaws = New Listof3DObject
+        RClaws.Create(0, 0, 0)
+        RLArm.Child = RClaws
 
-        LClaw1 = New Listof3DObject
-        LClaw1.Create(-0.5, -0.2, 0)
-        LClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
-        Claws.Child = LClaw1
+        RLClaw1 = New Listof3DObject
+        RLClaw1.Create(-0.5, -0.2, 0)
+        RLClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        RClaws.Child = RLClaw1
 
-        LClaw2 = New Listof3DObject
-        LClaw2.Create(-0.5, -0.2, 0)
-        LClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
-        LClaw1.Nxt = LClaw2
+        RLClaw2 = New Listof3DObject
+        RLClaw2.Create(-0.5, -0.2, 0)
+        RLClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
+        RLClaw1.Nxt = RLClaw2
 
+        LUArm = New Listof3DObject
+        LUArm.Create(-1.5, 0.75, 0)
+        LUArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
+        RUArm.Nxt = LUArm
 
-        'robot2
-        Robot2 = New Listof3DObject
+        LLArm = New Listof3DObject
+        LLArm.Create(-0.25, -0.25, 0)
+        LLArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
+        LUArm.Child = LLArm
 
-        Robot2.Create(0, 0, 0) 'body
-        Robot2.Object3D = New Object3D(-2.5, -2, -2, 2.5, 2, 2)
+        LClaws = New Listof3DObject
+        LClaws.Create(0, 0, 0)
+        LLArm.Child = LClaws
 
-        Robot.Nxt = Robot2
+        LLClaw1 = New Listof3DObject
+        LLClaw1.Create(-0.5, -0.2, 0)
+        LLClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        LClaws.Child = LLClaw1
+
+        LLClaw2 = New Listof3DObject
+        LLClaw2.Create(-0.5, -0.2, 0)
+        LLClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
+        LLClaw1.Nxt = LLClaw2
+
+        RUArm.Translateto(3.5, "x")
+        ''robot2
+        'Robot2 = New Listof3DObject
+
+        'Robot2.Create(0, 0, 0) 'body
+        'Robot2.Object3D = New Object3D(-2.5, -2, -2, 2.5, 2, 2)
+
+        'Robot.Nxt = Robot2
 
         'World.Child = New Listof3DObject
         'World.Child.Create(-1.5, 0.75, 0, "x")
@@ -219,7 +245,7 @@
 
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
         Dim a As Double = tbClaw.Value
-        Claws.Rotate(-a, "y")
+        RClaws.Rotate(-a, "y")
         Draw()
     End Sub
 
@@ -228,20 +254,34 @@
         'LClaw1.Rotate(a, "z")
         'LClaw2.Rotate(-a, "z")
 
-        LClaw1.Translateto(tbTweeze.Value / 100, "x")
-        LClaw2.Translateto(-tbTweeze.Value / 100, "x")
+        RLClaw1.Translateto(tbTweeze.Value / 100, "x")
+        RLClaw2.Translateto(-tbTweeze.Value / 100, "x")
         Draw()
     End Sub
 
     Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
         Dim a As Double = tbUnderArm.Value
-        LArm.Rotate(-a, "x")
+        If rbLeft.Checked Then
+            LLArm.Rotate(-a, "x") 'kiri
+        ElseIf rbRight.Checked Then
+            RLArm.Rotate(-a, "x") 'kanan
+        Else
+            MsgBox("Side not declsared")
+            tbUnderArm.Value = 0
+        End If
         Draw()
     End Sub
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
-        UArm.Rotate(-a, "z")
+        If rbLeft.Checked Then
+            LUArm.Rotate(-a, "x") 'kiri
+        ElseIf rbRight.Checked Then
+            RUArm.Rotate(-a, "x") 'kanan
+        Else
+            MsgBox("Side not declsared")
+            tbUpperArm.Value = 0
+        End If
         Draw()
     End Sub
 
