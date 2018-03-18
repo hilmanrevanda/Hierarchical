@@ -93,7 +93,6 @@
         pbCanvas.Image = btp
     End Sub
 
-
     Sub InitObject()
         'New(xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
         World = New Listof3DObject
@@ -328,11 +327,10 @@
             If rbRobot1.Checked And rbRobot2.Checked Then
                 R1RClaws1.Rotate(-a, "y")
                 R2RClaws1.Rotate(-a, "y")
-            ElseIf rbRobot1.Checked Then
-                R1RClaws1.Rotate(-a, "y")
-            ElseIf rbRobot2.Checked Then
-                R2RClaws1.Rotate(-a, "y")
+                R1RClaws2.Rotate(-a, "y")
+                R2RClaws2.Rotate(-a, "y")
             End If
+
         ElseIf rbLeft.Checked Then
             If rbRobot1.Checked And rbRobot2.Checked Then
                 R1RClaws1.Rotate(-a, "y")
@@ -344,8 +342,8 @@
             End If
         ElseIf rbRight.Checked Then
             If rbRobot1.Checked And rbRobot2.Checked Then
-                R1RClaws1.Rotate(-a, "y")
-                R2RClaws1.Rotate(-a, "y")
+                R1RClaws2.Rotate(-a, "y")
+                R2RClaws2.Rotate(-a, "y")
             ElseIf rbRobot1.Checked Then
                 R1RClaws2.Rotate(-a, "y")
             ElseIf rbRobot2.Checked Then
