@@ -32,7 +32,6 @@ Partial Class Form1
         Me.rbRobot1 = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.btnReset = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tbTweeze = New System.Windows.Forms.TrackBar()
@@ -78,7 +77,6 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.rbRobot1)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.btnReset)
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Panel1.Location = New System.Drawing.Point(593, 13)
         Me.Panel1.Name = "Panel1"
@@ -88,8 +86,8 @@ Partial Class Form1
         'rbLeft
         '
         Me.rbLeft.AutoSize = True
-        Me.rbLeft.Location = New System.Drawing.Point(218, 119)
-        Me.rbLeft.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.rbLeft.Location = New System.Drawing.Point(256, 95)
+        Me.rbLeft.Margin = New System.Windows.Forms.Padding(2)
         Me.rbLeft.Name = "rbLeft"
         Me.rbLeft.Size = New System.Drawing.Size(44, 17)
         Me.rbLeft.TabIndex = 29
@@ -99,8 +97,8 @@ Partial Class Form1
         'rbRight
         '
         Me.rbRight.AutoSize = True
-        Me.rbRight.Location = New System.Drawing.Point(218, 88)
-        Me.rbRight.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.rbRight.Location = New System.Drawing.Point(256, 64)
+        Me.rbRight.Margin = New System.Windows.Forms.Padding(2)
         Me.rbRight.Name = "rbRight"
         Me.rbRight.Size = New System.Drawing.Size(51, 17)
         Me.rbRight.TabIndex = 28
@@ -110,8 +108,8 @@ Partial Class Form1
         'rbRobot2
         '
         Me.rbRobot2.AutoSize = True
-        Me.rbRobot2.Location = New System.Drawing.Point(26, 119)
-        Me.rbRobot2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.rbRobot2.Location = New System.Drawing.Point(64, 95)
+        Me.rbRobot2.Margin = New System.Windows.Forms.Padding(2)
         Me.rbRobot2.Name = "rbRobot2"
         Me.rbRobot2.Size = New System.Drawing.Size(61, 17)
         Me.rbRobot2.TabIndex = 27
@@ -121,8 +119,8 @@ Partial Class Form1
         'rbRobot1
         '
         Me.rbRobot1.AutoSize = True
-        Me.rbRobot1.Location = New System.Drawing.Point(26, 88)
-        Me.rbRobot1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.rbRobot1.Location = New System.Drawing.Point(64, 64)
+        Me.rbRobot1.Margin = New System.Windows.Forms.Padding(2)
         Me.rbRobot1.Name = "rbRobot1"
         Me.rbRobot1.Size = New System.Drawing.Size(61, 17)
         Me.rbRobot1.TabIndex = 26
@@ -133,7 +131,7 @@ Partial Class Form1
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label7.Location = New System.Drawing.Point(242, 64)
+        Me.Label7.Location = New System.Drawing.Point(280, 40)
         Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(28, 13)
@@ -144,23 +142,12 @@ Partial Class Form1
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label6.Location = New System.Drawing.Point(48, 64)
+        Me.Label6.Location = New System.Drawing.Point(86, 40)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(36, 13)
         Me.Label6.TabIndex = 24
         Me.Label6.Text = "Robot"
-        '
-        'btnReset
-        '
-        Me.btnReset.BackColor = System.Drawing.Color.DarkSlateGray
-        Me.btnReset.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnReset.Location = New System.Drawing.Point(142, 17)
-        Me.btnReset.Name = "btnReset"
-        Me.btnReset.Size = New System.Drawing.Size(75, 23)
-        Me.btnReset.TabIndex = 23
-        Me.btnReset.Text = "Reset"
-        Me.btnReset.UseVisualStyleBackColor = False
         '
         'Panel2
         '
@@ -186,7 +173,7 @@ Partial Class Form1
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.Aqua
-        Me.Label5.Location = New System.Drawing.Point(202, 101)
+        Me.Label5.Location = New System.Drawing.Point(209, 107)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
@@ -195,8 +182,8 @@ Partial Class Form1
         '
         'tbTweeze
         '
-        Me.tbTweeze.Location = New System.Drawing.Point(202, 116)
-        Me.tbTweeze.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTweeze.Location = New System.Drawing.Point(209, 122)
+        Me.tbTweeze.Margin = New System.Windows.Forms.Padding(2)
         Me.tbTweeze.Maximum = 5
         Me.tbTweeze.Name = "tbTweeze"
         Me.tbTweeze.Size = New System.Drawing.Size(157, 45)
@@ -206,7 +193,7 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.Aqua
-        Me.Label4.Location = New System.Drawing.Point(16, 101)
+        Me.Label4.Location = New System.Drawing.Point(23, 107)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 13)
@@ -215,8 +202,8 @@ Partial Class Form1
         '
         'tbClaw
         '
-        Me.tbClaw.Location = New System.Drawing.Point(16, 116)
-        Me.tbClaw.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbClaw.Location = New System.Drawing.Point(23, 122)
+        Me.tbClaw.Margin = New System.Windows.Forms.Padding(2)
         Me.tbClaw.Maximum = 360
         Me.tbClaw.Name = "tbClaw"
         Me.tbClaw.Size = New System.Drawing.Size(157, 45)
@@ -226,17 +213,17 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.Aqua
-        Me.Label3.Location = New System.Drawing.Point(202, 52)
+        Me.Label3.Location = New System.Drawing.Point(209, 58)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(92, 13)
         Me.Label3.TabIndex = 24
-        Me.Label3.Text = "Rotate Under Arm"
+        Me.Label3.Text = "Rotate Lower Arm"
         '
         'tbUnderArm
         '
-        Me.tbUnderArm.Location = New System.Drawing.Point(202, 67)
-        Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbUnderArm.Location = New System.Drawing.Point(209, 73)
+        Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(2)
         Me.tbUnderArm.Maximum = 90
         Me.tbUnderArm.Name = "tbUnderArm"
         Me.tbUnderArm.Size = New System.Drawing.Size(157, 45)
@@ -246,7 +233,7 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.Aqua
-        Me.Label2.Location = New System.Drawing.Point(16, 52)
+        Me.Label2.Location = New System.Drawing.Point(23, 58)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(92, 13)
@@ -255,8 +242,8 @@ Partial Class Form1
         '
         'tbUpperArm
         '
-        Me.tbUpperArm.Location = New System.Drawing.Point(16, 67)
-        Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbUpperArm.Location = New System.Drawing.Point(23, 73)
+        Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(2)
         Me.tbUpperArm.Maximum = 90
         Me.tbUpperArm.Name = "tbUpperArm"
         Me.tbUpperArm.Size = New System.Drawing.Size(157, 45)
@@ -264,8 +251,8 @@ Partial Class Form1
         '
         'tbTorsoL
         '
-        Me.tbTorsoL.Location = New System.Drawing.Point(202, 18)
-        Me.tbTorsoL.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTorsoL.Location = New System.Drawing.Point(209, 24)
+        Me.tbTorsoL.Margin = New System.Windows.Forms.Padding(2)
         Me.tbTorsoL.Maximum = 100
         Me.tbTorsoL.Name = "tbTorsoL"
         Me.tbTorsoL.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -276,7 +263,7 @@ Partial Class Form1
         '
         Me.Geser.AutoSize = True
         Me.Geser.ForeColor = System.Drawing.Color.Aqua
-        Me.Geser.Location = New System.Drawing.Point(202, 3)
+        Me.Geser.Location = New System.Drawing.Point(209, 9)
         Me.Geser.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Geser.Name = "Geser"
         Me.Geser.Size = New System.Drawing.Size(102, 13)
@@ -287,7 +274,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.Aqua
-        Me.Label1.Location = New System.Drawing.Point(16, 3)
+        Me.Label1.Location = New System.Drawing.Point(23, 9)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(109, 13)
@@ -296,8 +283,8 @@ Partial Class Form1
         '
         'tbTorsoR
         '
-        Me.tbTorsoR.Location = New System.Drawing.Point(16, 18)
-        Me.tbTorsoR.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTorsoR.Location = New System.Drawing.Point(23, 24)
+        Me.tbTorsoR.Margin = New System.Windows.Forms.Padding(2)
         Me.tbTorsoR.Maximum = 100
         Me.tbTorsoR.Name = "tbTorsoR"
         Me.tbTorsoR.Size = New System.Drawing.Size(157, 45)
@@ -317,7 +304,7 @@ Partial Class Form1
         '
         Me.btnBackward.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnBackward.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnBackward.Location = New System.Drawing.Point(154, 39)
+        Me.btnBackward.Location = New System.Drawing.Point(212, 40)
         Me.btnBackward.Name = "btnBackward"
         Me.btnBackward.Size = New System.Drawing.Size(75, 23)
         Me.btnBackward.TabIndex = 10
@@ -328,7 +315,7 @@ Partial Class Form1
         '
         Me.btnForward.BackColor = System.Drawing.Color.DarkSlateGray
         Me.btnForward.ForeColor = System.Drawing.Color.GhostWhite
-        Me.btnForward.Location = New System.Drawing.Point(26, 39)
+        Me.btnForward.Location = New System.Drawing.Point(84, 40)
         Me.btnForward.Name = "btnForward"
         Me.btnForward.Size = New System.Drawing.Size(75, 23)
         Me.btnForward.TabIndex = 9
@@ -368,7 +355,6 @@ Partial Class Form1
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents btnReset As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents tbTweeze As TrackBar
