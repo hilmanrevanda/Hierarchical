@@ -9,12 +9,18 @@
     Public Stack As New Stack
 
     Public Vt(3, 3), Vpervective(3, 3), St(3, 3) As Double
-    Public Robot, Robot2 As New Listof3DObject
+    Public World, Robot, Robot2 As New Listof3DObject
 
     Public calc As Matrix = New Matrix
 
     'parts
-    Public Arm, RLArm, RUArm, RClaws, RLClaw1, RLClaw2, LLArm, LUArm, LClaws, LLClaw1, LLClaw2 As Listof3DObject
+    Public R1Arm1, R1RUArm1, R1RLArm1, R1RClaws1, R1RClaws11, R1RClaws12, R1Arm2, R1RUArm2, R1RLArm2, R1RClaws2, R1RClaws21, R1RClaws22 As Listof3DObject 'robot1
+    Public R2Arm1, R2RUArm1, R2RLArm1, R2RClaws1, R2RClaws11, R2RClaws12, R2Arm2, R2RUArm2, R2RLArm2, R2RClaws2, R2RClaws21, R2RClaws22 As Listof3DObject 'robot1
+
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
+    End Sub
+
 
     'Move
     Public StartX, StartY As Integer
@@ -39,7 +45,7 @@
 
         Stack.Push(temp)
 
-        Process(Robot)
+        Process(World)
     End Sub
 
     Sub Process(start As Listof3DObject)
@@ -109,158 +115,194 @@
 
     Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
         If Move Then
-            Robot.Rotate(StartX - e.X, "y")
-            Robot.Rotate(StartY - e.Y, "x")
-
-            Robot2.Rotate(StartX - e.X, "y")
-            Robot2.Rotate(StartY - e.Y, "x")
+            World.Rotate(StartX - e.X, "y")
+            World.Rotate(StartY - e.Y, "x")
             Draw()
         End If
     End Sub
 
     Sub InitObject()
         'New(xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
-        Robot = New Listof3DObject
+        World = New Listof3DObject
+        World.Create(0, 0, 0)
+        'World.Object3D = New Object3D(-5, -5, -5, 5, 5, 5)
 
+        Robot = New Listof3DObject
         Robot.Create(0, 0, 0) 'body
         Robot.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
         'Robot.Translateto(2, "z")
-        Robot.Scale(3)
+        World.Child = Robot
 
+        'ARM1
+        R1Arm1 = New Listof3DObject
+        R1Arm1.Create(-1.75, 0.5, 0)
+        'Arm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        Robot.Child = R1Arm1
 
-        RUArm = New Listof3DObject
-        RUArm.Create(-1.5, 0.75, 0)
-        RUArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
-        Robot.Child = RUArm
+        R1RUArm1 = New Listof3DObject
+        R1RUArm1.Create(0, -0.5, 0)
+        R1RUArm1.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0.5, 0.25)
+        R1Arm1.Child = R1RUArm1
 
-        RLArm = New Listof3DObject
-        RLArm.Create(-0.25, -0.25, 0)
-        RLArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
-        RUArm.Child = RLArm
+        R1RLArm1 = New Listof3DObject
+        R1RLArm1.Create(0, -0.75, 0)
+        'RLArm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R1RUArm1.Nxt = R1RLArm1
 
-        RClaws = New Listof3DObject
-        RClaws.Create(0, 0, 0)
+        R1RLArm1.Child = New Listof3DObject
+        R1RLArm1.Child.Create(0, -0.75, 0)
+        R1RLArm1.Child.Object3D = New Object3D(-0.25, -0.25, -0.25, 0.25, 0.5, 0.25)
+
+        R1RClaws1 = New Listof3DObject
+        R1RClaws1.Create(0, 0, 0)
         'RClaws.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
-        RLArm.Child = RClaws
+        R1RLArm1.Child.Child = R1RClaws1
 
-        RLClaw1 = New Listof3DObject
-        RLClaw1.Create(-0.5, -0.2, 0)
-        RLClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
-        RClaws.Child = RLClaw1
+        R1RClaws11 = New Listof3DObject
+        R1RClaws11.Create(-0.5, 0.5, 0)
+        R1RClaws11.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R1RClaws1.Child = R1RClaws11
 
-        RLClaw2 = New Listof3DObject
-        RLClaw2.Create(-0.5, -0.2, 0)
-        RLClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
-        RLClaw1.Nxt = RLClaw2
+        R1RClaws12 = New Listof3DObject
+        R1RClaws12.Create(-0.26, 0.5, 0)
+        R1RClaws12.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R1RClaws11.Nxt = R1RClaws12
 
-        LUArm = New Listof3DObject
-        LUArm.Create(-1.5, 0.75, 0)
-        LUArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
-        RUArm.Nxt = LUArm
+        'ARM2
+        R1Arm2 = New Listof3DObject
+        R1Arm2.Create(-1.75, 0.5, 0)
+        'Arm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R1Arm1.Nxt = R1Arm2
 
-        LLArm = New Listof3DObject
-        LLArm.Create(-0.25, -0.25, 0)
-        LLArm.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, -1.0, 0.25)
-        LUArm.Child = LLArm
+        R1RUArm2 = New Listof3DObject
+        R1RUArm2.Create(0, -0.5, 0)
+        R1RUArm2.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0.5, 0.25)
+        R1Arm2.Child = R1RUArm2
 
-        LClaws = New Listof3DObject
-        LClaws.Create(0, 0, 0)
-        LLArm.Child = LClaws
+        R1RLArm2 = New Listof3DObject
+        R1RLArm2.Create(0, -0.75, 0)
+        'RLArm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R1RUArm2.Nxt = R1RLArm2
 
-        LLClaw1 = New Listof3DObject
-        LLClaw1.Create(-0.5, -0.2, 0)
-        LLClaw1.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
-        LClaws.Child = LLClaw1
+        R1RLArm2.Child = New Listof3DObject
+        R1RLArm2.Child.Create(0, -0.75, 0)
+        R1RLArm2.Child.Object3D = New Object3D(-0.25, -0.25, -0.25, 0.25, 0.5, 0.25)
 
-        LLClaw2 = New Listof3DObject
-        LLClaw2.Create(-0.5, -0.2, 0)
-        LLClaw2.Object3D = New Object3D(0.55, -1.0, -0.2, 0.65, -0.8, 0.2)
-        LLClaw1.Nxt = LLClaw2
+        R1RClaws2 = New Listof3DObject
+        R1RClaws2.Create(0, 0, 0)
+        'RClaws.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
+        R1RLArm2.Child.Child = R1RClaws2
 
-        RUArm.Translateto(3.5, "x")
-        ''robot2
-        'Robot2 = New Listof3DObject
+        R1RClaws21 = New Listof3DObject
+        R1RClaws21.Create(-0.5, 0.5, 0)
+        R1RClaws21.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R1RClaws2.Child = R1RClaws21
 
-        'Robot2.Create(0, 0, 0) 'body
-        'Robot2.Object3D = New Object3D(-2.5, -2, -2, 2.5, 2, 2)
+        R1RClaws22 = New Listof3DObject
+        R1RClaws22.Create(-0.26, 0.5, 0)
+        R1RClaws22.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R1RClaws21.Nxt = R1RClaws22
 
-        'Robot.Nxt = Robot2
+        R1Arm2.Translateto(3.5, "x") 'copy arm left to right
 
-        'World.Child = New Listof3DObject
-        'World.Child.Create(-1.5, 0.75, 0, "x")
-        'World.Child.Object3D = New Object3D(-0.5, -0.25, -0.25, 0, 0.25, 0.25)
+        World.Child.Translateto(-3, "x")
 
-        'World.Child.Child = New Listof3DObject
-        'World.Child.Child.Create(-0.25, -0.25, 0, "z")
-        'World.Child.Child.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
+        'robot 2
+        Robot2 = New Listof3DObject
+        Robot2.Create(0, 0, 0) 'body
+        Robot2.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
+        'Robot.Translateto(2, "z")
+        Robot.Nxt = Robot2
 
-        'codingan  tahun lalu
-        'RUpperArm = New TElmtList3DObject(-0.25, -0.25, 0, "z", 0)
-        'RightShoulder.Child = New TList3DObject
-        'RightShoulder.Child.First = RUpperArm
-        'RUpperArm.Obj = New T3DObject(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
+        'ARM1
+        R2Arm1 = New Listof3DObject
+        R2Arm1.Create(-1.75, 0.5, 0)
+        'Arm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        Robot2.Child = R2Arm1
 
-        'RLowerArm = New TElmtList3DObject(0, -0.5, 0, "x", -90)
-        'RUpperArm.Child = New TList3DObject
-        'RUpperArm.Child.First = RLowerArm
-        'RLowerArm.Obj = New T3DObject(-0.25, -1, -0.25, 0.25, 0, 0.25)
+        R2RUArm1 = New Listof3DObject
+        R2RUArm1.Create(0, -0.5, 0)
+        R2RUArm1.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0.5, 0.25)
+        R2Arm1.Child = R2RUArm1
 
-        'RWrist = New TElmtList3DObject(0, -1, 0, "y", 0)
-        'RLowerArm.Child = New TList3DObject
-        'RLowerArm.Child.First = RWrist
+        R2RLArm1 = New Listof3DObject
+        R2RLArm1.Create(0, -0.75, 0)
+        'RLArm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R2RUArm1.Nxt = R2RLArm1
 
-        'RClaw1 = New TElmtList3DObject(-0.125, 0, 0, "z", 0)
-        'RWrist.Child = New TList3DObject
-        'RWrist.Child.First = RClaw1
-        'RClaw1.Obj = New T3DObject(-0.075, -0.5, -0.25, 0.075, 0, 0.25)
-        'RClaw1.Child = New TList3DObject
-        'RClaw1.Child.First = Nothing
+        R2RLArm1.Child = New Listof3DObject
+        R2RLArm1.Child.Create(0, -0.75, 0)
+        R2RLArm1.Child.Object3D = New Object3D(-0.25, -0.25, -0.25, 0.25, 0.5, 0.25)
 
-        'RClaw2 = New TElmtList3DObject(0.125, 0, 0, "z", 0)
-        'RClaw1.Nxt = RClaw2
-        'RClaw2.Obj = New T3DObject(-0.075, -0.5, -0.25, 0.075, 0, 0.25)
-        'RClaw2.Child = New TList3DObject
-        'RClaw2.Child.First = Nothing
+        R2RClaws1 = New Listof3DObject
+        R2RClaws1.Create(0, 0, 0)
+        'RClaws.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
+        R2RLArm1.Child.Child = R2RClaws1
 
-        ''Left
-        'LeftShoulder = New TElmtList3DObject(1.5, 0.75, 0, "x", 0)
-        'RightShoulder.Nxt = LeftShoulder
-        'LeftShoulder.Obj = New T3DObject(0, -0.25, -0.25, 0.5, 0.25, 0.25)
+        R2RClaws11 = New Listof3DObject
+        R2RClaws11.Create(-0.5, 0.5, 0)
+        R2RClaws11.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R2RClaws1.Child = R2RClaws11
 
-        'LUpperArm = New TElmtList3DObject(0.25, -0.25, 0, "z", 0)
-        'LeftShoulder.Child = New TList3DObject
-        'LeftShoulder.Child.First = LUpperArm
-        'LUpperArm.Obj = New T3DObject(-0.25, -0.5, -0.25, 0.25, 0, 0.25)
+        R2RClaws12 = New Listof3DObject
+        R2RClaws12.Create(-0.26, 0.5, 0)
+        R2RClaws12.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R2RClaws11.Nxt = R2RClaws12
 
-        'LLowerArm = New TElmtList3DObject(0, -0.5, 0, "x", -90)
-        'LUpperArm.Child = New TList3DObject
-        'LUpperArm.Child.First = LLowerArm
-        'LLowerArm.Obj = New T3DObject(-0.25, -1, -0.25, 0.25, 0, 0.25)
+        'ARM2
+        R2Arm2 = New Listof3DObject
+        R2Arm2.Create(-1.75, 0.5, 0)
+        'Arm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R2Arm1.Nxt = R2Arm2
 
-        'LWrist = New TElmtList3DObject(0, -1, 0, "y", 0)
-        'LLowerArm.Child = New TList3DObject
-        'LLowerArm.Child.First = LWrist
+        R2RUArm2 = New Listof3DObject
+        R2RUArm2.Create(0, -0.5, 0)
+        R2RUArm2.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0.5, 0.25)
+        R2Arm2.Child = R2RUArm2
 
-        'LClaw1 = New TElmtList3DObject(0.125, 0, 0, "z", 0)
-        'LWrist.Child = New TList3DObject
-        'LWrist.Child.First = LClaw1
-        'LClaw1.Obj = New T3DObject(-0.075, -0.5, -0.25, 0.075, 0, 0.25)
-        'LClaw1.Child = New TList3DObject
-        'LClaw1.Child.First = Nothing
+        R2RLArm2 = New Listof3DObject
+        R2RLArm2.Create(0, -0.75, 0)
+        'RLArm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        R2RUArm2.Nxt = R2RLArm2
 
-        'LClaw2 = New TElmtList3DObject(-0.125, 0, 0, "z", 0)
-        'LClaw1.Nxt = LClaw2
-        'LClaw2.Obj = New T3DObject(-0.075, -0.5, -0.25, 0.075, 0, 0.25)
-        'LClaw2.Child = New TList3DObject
-        'LClaw2.Child.First = Nothing
+        R2RLArm2.Child = New Listof3DObject
+        R2RLArm2.Child.Create(0, -0.75, 0)
+        R2RLArm2.Child.Object3D = New Object3D(-0.25, -0.25, -0.25, 0.25, 0.5, 0.25)
+
+        R2RClaws2 = New Listof3DObject
+        R2RClaws2.Create(0, 0, 0)
+        'RClaws.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
+        R2RLArm2.Child.Child = R2RClaws2
+
+        R2RClaws21 = New Listof3DObject
+        R2RClaws21.Create(-0.5, 0.5, 0)
+        R2RClaws21.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R2RClaws2.Child = R2RClaws21
+
+        R2RClaws22 = New Listof3DObject
+        R2RClaws22.Create(-0.26, 0.5, 0)
+        R2RClaws22.Object3D = New Object3D(0.35, -1.0, -0.2, 0.45, -0.8, 0.2)
+        R2RClaws21.Nxt = R2RClaws22
+
+        R2Arm2.Translateto(3.5, "x") 'copy arm left to right
+
+        Robot2.Translateto(3, "x")
     End Sub
 
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
         Dim a As Double = tbClaw.Value
         If rbLeft.Checked Then
-            LClaws.Rotate(-a, "y") 'kiri
+            If rbRobot1.Checked Then
+                R1RClaws1.Rotate(-a, "y")
+            ElseIf rbRobot2.Checked Then
+                R2RClaws1.Rotate(-a, "y")
+            End If
         ElseIf rbRight.Checked Then
-            RClaws.Rotate(-a, "y") 'kanan
+            If rbRobot1.Checked Then
+                R1RClaws2.Rotate(-a, "y")
+            ElseIf rbRobot2.Checked Then
+                R2RClaws2.Rotate(-a, "y")
+            End If
         Else
             MsgBox("Side not declsared")
             tbClaw.Value = 0
@@ -272,11 +314,21 @@
         Dim a As Double = tbTweeze.Value
 
         If rbLeft.Checked Then
-            LLClaw1.Translateto(tbTweeze.Value / 100, "x")
-            LLClaw2.Translateto(-tbTweeze.Value / 100, "x")
+            If rbRobot1.Checked Then
+                R1RClaws11.Translateto(tbTweeze.Value / 100, "x")
+                R1RClaws12.Translateto(-tbTweeze.Value / 100, "x")
+            ElseIf rbRobot2.Checked Then
+                R2RClaws11.Translateto(tbTweeze.Value / 100, "x")
+                R2RClaws12.Translateto(-tbTweeze.Value / 100, "x")
+            End If
         ElseIf rbRight.Checked Then
-            RLClaw1.Translateto(tbTweeze.Value / 100, "x")
-            RLClaw2.Translateto(-tbTweeze.Value / 100, "x")
+            If rbRobot1.Checked Then
+                R1RClaws21.Translateto(tbTweeze.Value / 100, "x")
+                R1RClaws22.Translateto(-tbTweeze.Value / 100, "x")
+            ElseIf rbRobot2.Checked Then
+                R2RClaws21.Translateto(tbTweeze.Value / 100, "x")
+                R2RClaws22.Translateto(-tbTweeze.Value / 100, "x")
+            End If
         Else
             MsgBox("Side not declsared")
             tbClaw.Value = 0
@@ -287,9 +339,17 @@
     Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
         Dim a As Double = tbUnderArm.Value
         If rbLeft.Checked Then
-            LLArm.Rotate(-a, "x") 'kiri
+            If rbRobot1.Checked Then
+                R1RLArm1.Rotate(-a, "x")
+            ElseIf rbRobot2.Checked Then
+                R2RLArm1.Rotate(-a, "x")
+            End If
         ElseIf rbRight.Checked Then
-            RLArm.Rotate(-a, "x") 'kanan
+            If rbRobot1.Checked Then
+                R1RLArm2.Rotate(-a, "x")
+            ElseIf rbRobot2.Checked Then
+                R2RLArm2.Rotate(-a, "x")
+            End If
         Else
             MsgBox("Side not declsared")
             tbUnderArm.Value = 0
@@ -299,10 +359,19 @@
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
         Dim a As Double = tbUpperArm.Value
+
         If rbLeft.Checked Then
-            LUArm.Rotate(-a, "x") 'kiri
+            If rbRobot1.Checked Then
+                R1Arm1.Rotate(-a, "x")
+            ElseIf rbRobot2.Checked Then
+                R2Arm1.Rotate(-a, "x")
+            End If
         ElseIf rbRight.Checked Then
-            RUArm.Rotate(-a, "x") 'kanan
+            If rbRobot1.Checked Then
+                R1Arm2.Rotate(-a, "x")
+            ElseIf rbRobot2.Checked Then
+                R2Arm2.Rotate(-a, "x")
+            End If
         Else
             MsgBox("Side not declsared")
             tbUpperArm.Value = 0
