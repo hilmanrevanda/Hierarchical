@@ -2,6 +2,7 @@
     Dim btp As Bitmap
     Dim g As Graphics
     Dim last As Double = 0
+
     'belok
     Public Deg1 As Integer = 0
     Public Deg2 As Integer = 0
@@ -485,7 +486,6 @@ Public Class edge
         Me.p2 = p2
     End Sub
 End Class
-
 
 Public Class Object3D
     Public edges As List(Of edge) = New List(Of edge)
