@@ -16,8 +16,12 @@
     Public calc As Matrix = New Matrix
 
     'parts
-    Public R1Arm1, R1RUArm1, R1RLArm1, R1RClaws1, R1RClaws11, R1RClaws12, R1Arm2, R1RUArm2, R1RLArm2, R1RClaws2, R1RClaws21, R1RClaws22 As Listof3DObject 'robot1
-    Public R2Arm1, R2RUArm1, R2RLArm1, R2RClaws1, R2RClaws11, R2RClaws12, R2Arm2, R2RUArm2, R2RLArm2, R2RClaws2, R2RClaws21, R2RClaws22 As Listof3DObject 'robot2
+    Public R1Arm1, R1RUArm1, R1RLArm1, R1RClaws1, R1RClaws11, R1RClaws12,
+        R1Arm2, R1RUArm2, R1RLArm2, R1RClaws2, R1RClaws21, R1RClaws22 As Listof3DObject 'robot1
+
+    Public R2Arm1, R2RUArm1, R2RLArm1, R2RClaws1, R2RClaws11, R2RClaws12,
+        R2Arm2, R2RUArm2, R2RLArm2, R2RClaws2, R2RClaws21, R2RClaws22 As Listof3DObject 'robot2
+
 
     'Move
     Public StartX, StartY As Integer
@@ -383,7 +387,24 @@
             Draw()
         End If
     End Sub
-
+    Private Sub tbTorsoR_Scroll(sender As Object, e As EventArgs) Handles tbTorsoR.Scroll
+        If rbRobot1.Checked Then
+            Robot.Rotate(tbTorsoR.Value, "y")
+        End If
+        If rbRobot2.Checked Then
+            Robot2.Rotate(tbTorsoR.Value, "y")
+        End If
+        Draw()
+    End Sub
+    Private Sub tbTorsoL_Scroll(sender As Object, e As EventArgs) Handles tbTorsoL.Scroll
+        If rbRobot1.Checked Then
+            Robot.Rotate(-tbTorsoL.Value, "y")
+        End If
+        If rbRobot2.Checked Then
+            Robot2.Rotate(-tbTorsoL.Value, "y")
+        End If
+        Draw()
+    End Sub
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
         procMenu(tbClaw)
         Draw()
