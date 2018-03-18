@@ -92,6 +92,10 @@
         pbCanvas.Image = btp
     End Sub
 
+    Private Sub pbCanvas_MouseDown(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseDown
+        Move = True
+        StartX = e.X
+        StartY = e.Y
 
     End Sub
 
@@ -111,11 +115,8 @@
 
     Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
         If Move Then
-            Robot.Rotate(StartX - e.X, "y")
-            Robot.Rotate(StartY - e.Y, "x")
-
-            Robot2.Rotate(StartX - e.X, "y")
-            Robot2.Rotate(StartY - e.Y, "x")
+            World.Rotate(StartX - e.X, "y")
+            World.Rotate(StartY - e.Y, "x")
             Draw()
         End If
     End Sub
@@ -132,21 +133,30 @@
         'Robot.Translateto(2, "z")
         World.Child = Robot
 
+        'ARM1
+        R1Arm1 = New Listof3DObject
+        R1Arm1.Create(-1.75, 0.5, 0)
+        'Arm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
+        Robot.Child = R1Arm1
 
-        RUArm = New Listof3DObject
-        RUArm.Create(-1.5, 0.75, 0)
-        RUArm.Object3D = New Object3D(-0.5, -0.75, -0.25, 0, 0.25, 0.25)
-        Robot.Child = RUArm
+        R1RUArm1 = New Listof3DObject
+        R1RUArm1.Create(0, -0.5, 0)
+        R1RUArm1.Object3D = New Object3D(-0.25, -0.5, -0.25, 0.25, 0.5, 0.25)
+        R1Arm1.Child = R1RUArm1
 
         R1RLArm1 = New Listof3DObject
         R1RLArm1.Create(0, -0.75, 0)
         'RLArm.Object3D = New Object3D(-0.5, -1, -1, 0.5, 1, 1)
         R1RUArm1.Nxt = R1RLArm1
 
-        RClaws = New Listof3DObject
-        RClaws.Create(0, 0, 0)
+        R1RLArm1.Child = New Listof3DObject
+        R1RLArm1.Child.Create(0, -0.75, 0)
+        R1RLArm1.Child.Object3D = New Object3D(-0.25, -0.25, -0.25, 0.25, 0.5, 0.25)
+
+        R1RClaws1 = New Listof3DObject
+        R1RClaws1.Create(0, 0, 0)
         'RClaws.Object3D = New Object3D(-1.5, -1, -1, 1.5, 1, 1)
-        RLArm.Child = RClaws
+        R1RLArm1.Child.Child = R1RClaws1
 
         R1RClaws11 = New Listof3DObject
         R1RClaws11.Create(-0.5, 0.5, 0)
@@ -278,19 +288,9 @@
 
         Robot2.Translateto(3, "x")
     End Sub
-    Private Sub tbTorsoR_Scroll(sender As Object, e As EventArgs) Handles tbTorsoR.Scroll
-        Robot.Rotate(tbTorsoR.Value, "y")
-        Draw()
-    End Sub
-
-    Private Sub tbTorsoL_Scroll(sender As Object, e As EventArgs) Handles tbTorsoL.Scroll
-        Robot.Rotate(-tbTorsoL.Value, "y")
-        Draw()
-    End Sub
 
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
         Dim a As Double = tbClaw.Value
-
         If rbLeft.Checked Then
             If rbRobot1.Checked Then
                 R1RClaws1.Rotate(-a, "y")
@@ -304,17 +304,14 @@
                 R2RClaws2.Rotate(-a, "y")
             End If
         Else
-            MsgBox("Side not declared")
-            tbUpperArm.Value = 0
+            MsgBox("Side not declsared")
+            tbClaw.Value = 0
         End If
         Draw()
-
     End Sub
 
     Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
         Dim a As Double = tbTweeze.Value
-        'LClaw1.Rotate(a, "z")
-        'LClaw2.Rotate(-a, "z")
 
         If rbLeft.Checked Then
             If rbRobot1.Checked Then
@@ -333,14 +330,9 @@
                 R2RClaws22.Translateto(-tbTweeze.Value / 100, "x")
             End If
         Else
-            MsgBox("Side not declared")
-            tbUpperArm.Value = 0
+            MsgBox("Side not declsared")
+            tbClaw.Value = 0
         End If
-        Draw()
-        RClaws.Rotate(-a, "y")
-        Draw()
-        RLClaw1.Translateto(tbTweeze.Value / 100, "x")
-        RLClaw2.Translateto(-tbTweeze.Value / 100, "x")
         Draw()
     End Sub
 
@@ -359,7 +351,7 @@
                 R2RLArm2.Rotate(-a, "x")
             End If
         Else
-            MsgBox("Side not declared")
+            MsgBox("Side not declsared")
             tbUnderArm.Value = 0
         End If
         Draw()
@@ -381,80 +373,10 @@
                 R2Arm2.Rotate(-a, "x")
             End If
         Else
-            MsgBox("Side not declared")
+            MsgBox("Side not declsared")
             tbUpperArm.Value = 0
         End If
         Draw()
-    End Sub
-
-    'panah
-    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
-
-        'detect up arrow key
-        If keyData = Keys.Up Then
-            Robot.Scale(0.1)
-            Draw()
-            Return True
-        End If
-        'detect down arrow key
-        If keyData = Keys.Down Then
-            Robot.Scale(-0.1)
-            Draw()
-            Return True
-        End If
-        'detect left arrow key
-        If keyData = Keys.Left Then
-            Deg = Deg - 1
-
-            Robot.Rotate(Deg, "y")
-            Draw()
-            Return True
-        End If
-        'detect right arrow key
-        If keyData = Keys.Right Then
-            Deg = Deg + 1
-
-            Robot.Rotate(Deg, "y")
-            Draw()
-            'Matrix(3, 0) = 0.1
-            'World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
-            'Draw()
-            Return True
-        End If
-        Return MyBase.ProcessCmdKey(msg, keyData)
-    End Function
-
-
-    Private Sub pbCanvas_MouseDown(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseDown
-        Move = True
-        StartX = e.X
-        StartY = e.Y
-
-    End Sub
-
-    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
-        Robot.Scale(0.1)
-        Draw()
-    End Sub
-
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
-        Robot.Scale(-0.1)
-        Draw()
-    End Sub
-
-    Private Sub pbCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseUp
-        Move = False
-    End Sub
-
-    Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
-        If Move Then
-            Robot.Rotate(StartX - e.X, "y")
-            Robot.Rotate(StartY - e.Y, "x")
-
-            Robot2.Rotate(StartX - e.X, "y")
-            Robot2.Rotate(StartY - e.Y, "x")
-            Draw()
-        End If
     End Sub
 
     Sub InitValue()
@@ -500,6 +422,42 @@
         }
     End Sub
 
+    'panah
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
+
+        'detect up arrow key
+        If keyData = Keys.Up Then
+            Robot.Scale(0.1)
+            Draw()
+            Return True
+        End If
+        'detect down arrow key
+        If keyData = Keys.Down Then
+            Robot.Scale(-0.1)
+            Draw()
+            Return True
+        End If
+        'detect left arrow key
+        If keyData = Keys.Left Then
+            Deg = Deg - 1
+
+            Robot.Rotate(Deg, "y")
+            Draw()
+            Return True
+        End If
+        'detect right arrow key
+        If keyData = Keys.Right Then
+            Deg = Deg + 1
+
+            Robot.Rotate(Deg, "y")
+            Draw()
+            'Matrix(3, 0) = 0.1
+            'World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
+            'Draw()
+            Return True
+        End If
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
 
 End Class
 
@@ -558,7 +516,7 @@ Public Class Object3D
 End Class
 
 Public Class Listof3DObject
-    Public calc As Matrix = New Matrix
+    Public help As Matrix = New Matrix
 
     Public Object3D As Object3D
     Public Child As Listof3DObject
@@ -566,19 +524,18 @@ Public Class Listof3DObject
     Public Transform(3, 3) As Double
 
     Public Alphax, Alphay, Alphaz As Double
-    Public Translate As Double = 0
+    Public Translatex, Translatey, Translatez As Double
 
     Public Sub Create(x As Double, y As Double, z As Double)
         Alphax = 0
         Alphay = 0
         Alphaz = 0
 
-        Transform = New Double(3, 3) {
-                {1, 0, 0, 0},
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {x, y, z, 1}
-            }
+        Translatex = 0
+        Translatey = 0
+        Translatez = 0
+
+        Transform = help.InitMatrix(x, y, z)
     End Sub
 
     Public Sub Rotate(tet As Double, Axis As Char)
@@ -623,45 +580,43 @@ Public Class Listof3DObject
                 }
         End If
 
-        Transform = calc.MatrixMultiplication(t1, Transform)
+        Transform = help.MatrixMultiplication(t1, Transform)
     End Sub
 
     Public Sub Translateto(newest As Double, Axis As Char)
         Dim current As Double
-        current = newest - Translate
-        Translate = newest
 
-        Dim Matrix(3, 3) As Double
-        Matrix = New Double(3, 3) {
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, 0},
-            {0, 0, 0, 1}
-        }
-
-        If (Axis = "x") Then
-            Matrix(3, 0) = current
-        ElseIf (Axis = "y") Then
-            Matrix(3, 1) = current
-        ElseIf (Axis = "z") Then
-            Matrix(3, 2) = current
+        If Axis = "x" Then
+            current = newest - Translatex
+            Translatex = newest
+        ElseIf Axis = "y" Then
+            current = newest - Translatey
+            Translatey = newest
+        ElseIf Axis = "z" Then
+            current = newest - Translatez
+            Translatez = newest
         End If
 
-        Transform = calc.MatrixMultiplication(Matrix, Transform)
+        Dim Matrix(3, 3) As Double
+
+        If (Axis = "x") Then
+            Matrix = help.InitMatrix(current, 0, 0)
+        ElseIf (Axis = "y") Then
+            Matrix = help.InitMatrix(0, current, 0)
+        ElseIf (Axis = "z") Then
+            Matrix = help.InitMatrix(0, 0, current)
+        End If
+
+        Transform = help.MatrixMultiplication(Matrix, Transform)
     End Sub
 
     Sub Scale(value As Double)
         Dim Matrix(3, 3) As Double
-        Matrix = New Double(3, 3) {
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, 0},
-            {0, 0, 0, 1}
-        }
+        Matrix = help.InitMatrix
 
         Matrix(3, 2) = value
 
-        Transform = calc.MatrixMultiplication(Matrix, Transform)
+        Transform = help.MatrixMultiplication(Matrix, Transform)
     End Sub
 End Class
 
@@ -682,5 +637,23 @@ Public Class Matrix
                        Point.x * Marix(0, 1) + Point.y * Marix(1, 1) + Point.z * Marix(2, 1) + Point.w * Marix(3, 1),
                        Point.x * Marix(0, 2) + Point.y * Marix(1, 2) + Point.z * Marix(2, 2) + Point.w * Marix(3, 2),
                        Point.x * Marix(0, 3) + Point.y * Marix(1, 3) + Point.z * Marix(2, 3) + Point.w * Marix(3, 3))
+    End Function
+
+    Overloads Function InitMatrix() As Double(,)
+        Return New Double(3, 3) {
+                {1, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
+            }
+    End Function
+
+    Overloads Function InitMatrix(x As Double, y As Double, z As Double) As Double(,)
+        Return New Double(3, 3) {
+                {1, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {x, y, z, 1}
+            }
     End Function
 End Class

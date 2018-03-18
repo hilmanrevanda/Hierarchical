@@ -38,10 +38,10 @@ Partial Class Form1
         Me.tbUnderArm = New System.Windows.Forms.TrackBar()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tbUpperArm = New System.Windows.Forms.TrackBar()
-        Me.tbTorsoL = New System.Windows.Forms.TrackBar()
+        Me.tbTorsoX = New System.Windows.Forms.TrackBar()
         Me.Geser = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.tbTorsoR = New System.Windows.Forms.TrackBar()
+        Me.tbTorsoY = New System.Windows.Forms.TrackBar()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnBackward = New System.Windows.Forms.Button()
         Me.btnForward = New System.Windows.Forms.Button()
@@ -56,8 +56,8 @@ Partial Class Form1
         CType(Me.tbClaw, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbUnderArm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbUpperArm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbTorsoL, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbTorsoR, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTorsoX, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbTorsoY, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -130,11 +130,12 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.tbUnderArm)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.tbUpperArm)
-        Me.Panel2.Controls.Add(Me.tbTorsoL)
+        Me.Panel2.Controls.Add(Me.tbTorsoX)
         Me.Panel2.Controls.Add(Me.Geser)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.tbTorsoY)
-        Me.Panel2.Location = New System.Drawing.Point(593, 179)
+        Me.Panel2.Location = New System.Drawing.Point(791, 220)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(501, 208)
         Me.Panel2.TabIndex = 24
@@ -151,8 +152,8 @@ Partial Class Form1
         '
         'tbTweeze
         '
-        Me.tbTweeze.Location = New System.Drawing.Point(202, 116)
-        Me.tbTweeze.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTweeze.Location = New System.Drawing.Point(269, 143)
+        Me.tbTweeze.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbTweeze.Maximum = 5
         Me.tbTweeze.Name = "tbTweeze"
         Me.tbTweeze.Size = New System.Drawing.Size(209, 56)
@@ -170,8 +171,8 @@ Partial Class Form1
         '
         'tbClaw
         '
-        Me.tbClaw.Location = New System.Drawing.Point(16, 116)
-        Me.tbClaw.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbClaw.Location = New System.Drawing.Point(21, 143)
+        Me.tbClaw.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbClaw.Maximum = 360
         Me.tbClaw.Name = "tbClaw"
         Me.tbClaw.Size = New System.Drawing.Size(209, 56)
@@ -189,8 +190,8 @@ Partial Class Form1
         '
         'tbUnderArm
         '
-        Me.tbUnderArm.Location = New System.Drawing.Point(202, 67)
-        Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbUnderArm.Location = New System.Drawing.Point(269, 82)
+        Me.tbUnderArm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbUnderArm.Maximum = 90
         Me.tbUnderArm.Name = "tbUnderArm"
         Me.tbUnderArm.Size = New System.Drawing.Size(209, 56)
@@ -208,20 +209,20 @@ Partial Class Form1
         '
         'tbUpperArm
         '
-        Me.tbUpperArm.Location = New System.Drawing.Point(16, 67)
-        Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbUpperArm.Location = New System.Drawing.Point(21, 82)
+        Me.tbUpperArm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbUpperArm.Maximum = 90
         Me.tbUpperArm.Name = "tbUpperArm"
         Me.tbUpperArm.Size = New System.Drawing.Size(209, 56)
         Me.tbUpperArm.TabIndex = 21
         '
-        'tbTorsoL
+        'tbTorsoX
         '
-        Me.tbTorsoX.Location = New System.Drawing.Point(202, 18)
-        Me.tbTorsoX.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTorsoX.Location = New System.Drawing.Point(269, 22)
+        Me.tbTorsoX.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbTorsoX.Maximum = 100
         Me.tbTorsoX.Name = "tbTorsoX"
-        Me.tbTorsoX.Size = New System.Drawing.Size(156, 45)
+        Me.tbTorsoX.Size = New System.Drawing.Size(208, 56)
         Me.tbTorsoX.TabIndex = 20
         '
         'Geser
@@ -230,9 +231,9 @@ Partial Class Form1
         Me.Geser.ForeColor = System.Drawing.Color.Aqua
         Me.Geser.Location = New System.Drawing.Point(269, 4)
         Me.Geser.Name = "Geser"
-        Me.Geser.Size = New System.Drawing.Size(76, 13)
+        Me.Geser.Size = New System.Drawing.Size(100, 17)
         Me.Geser.TabIndex = 19
-        Me.Geser.Text = "Rotate Torso to Left"
+        Me.Geser.Text = "Coba 1 bagian"
         '
         'Label1
         '
@@ -240,17 +241,17 @@ Partial Class Form1
         Me.Label1.ForeColor = System.Drawing.Color.Aqua
         Me.Label1.Location = New System.Drawing.Point(21, 4)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 13)
+        Me.Label1.Size = New System.Drawing.Size(78, 17)
         Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Rotate Torso to Right"
+        Me.Label1.Text = "Coba world"
         '
-        'tbTorsoR
+        'tbTorsoY
         '
-        Me.tbTorsoY.Location = New System.Drawing.Point(16, 18)
-        Me.tbTorsoY.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbTorsoY.Location = New System.Drawing.Point(21, 22)
+        Me.tbTorsoY.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tbTorsoY.Maximum = 100
         Me.tbTorsoY.Name = "tbTorsoY"
-        Me.tbTorsoY.Size = New System.Drawing.Size(157, 45)
+        Me.tbTorsoY.Size = New System.Drawing.Size(209, 56)
         Me.tbTorsoY.TabIndex = 17
         '
         'Panel3
@@ -350,8 +351,8 @@ Partial Class Form1
         CType(Me.tbClaw, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbUnderArm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbUpperArm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbTorsoL, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbTorsoR, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTorsoX, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbTorsoY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -372,10 +373,10 @@ Partial Class Form1
     Friend WithEvents tbUnderArm As TrackBar
     Friend WithEvents Label2 As Label
     Friend WithEvents tbUpperArm As TrackBar
-    Friend WithEvents tbTorsoL As TrackBar
+    Friend WithEvents tbTorsoX As TrackBar
     Friend WithEvents Geser As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents tbTorsoR As TrackBar
+    Friend WithEvents tbTorsoY As TrackBar
     Friend WithEvents Panel3 As Panel
     Friend WithEvents btnBackward As Button
     Friend WithEvents btnForward As Button
