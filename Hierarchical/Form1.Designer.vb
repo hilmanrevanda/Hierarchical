@@ -26,6 +26,10 @@ Partial Class Form1
         Me.pbCanvas = New System.Windows.Forms.PictureBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.rbLeft = New System.Windows.Forms.CheckBox()
+        Me.rbRight = New System.Windows.Forms.CheckBox()
+        Me.rbRobot2 = New System.Windows.Forms.CheckBox()
+        Me.rbRobot1 = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnReset = New System.Windows.Forms.Button()
@@ -45,10 +49,6 @@ Partial Class Form1
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnBackward = New System.Windows.Forms.Button()
         Me.btnForward = New System.Windows.Forms.Button()
-        Me.rbRobot1 = New System.Windows.Forms.CheckBox()
-        Me.rbRobot2 = New System.Windows.Forms.CheckBox()
-        Me.rbRight = New System.Windows.Forms.CheckBox()
-        Me.rbLeft = New System.Windows.Forms.CheckBox()
         CType(Me.pbCanvas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -86,6 +86,46 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(501, 197)
         Me.Panel1.TabIndex = 23
+        '
+        'rbLeft
+        '
+        Me.rbLeft.AutoSize = True
+        Me.rbLeft.Location = New System.Drawing.Point(291, 146)
+        Me.rbLeft.Name = "rbLeft"
+        Me.rbLeft.Size = New System.Drawing.Size(54, 21)
+        Me.rbLeft.TabIndex = 29
+        Me.rbLeft.Text = "Left"
+        Me.rbLeft.UseVisualStyleBackColor = True
+        '
+        'rbRight
+        '
+        Me.rbRight.AutoSize = True
+        Me.rbRight.Location = New System.Drawing.Point(291, 108)
+        Me.rbRight.Name = "rbRight"
+        Me.rbRight.Size = New System.Drawing.Size(63, 21)
+        Me.rbRight.TabIndex = 28
+        Me.rbRight.Text = "Right"
+        Me.rbRight.UseVisualStyleBackColor = True
+        '
+        'rbRobot2
+        '
+        Me.rbRobot2.AutoSize = True
+        Me.rbRobot2.Location = New System.Drawing.Point(35, 146)
+        Me.rbRobot2.Name = "rbRobot2"
+        Me.rbRobot2.Size = New System.Drawing.Size(76, 21)
+        Me.rbRobot2.TabIndex = 27
+        Me.rbRobot2.Text = "Robot2"
+        Me.rbRobot2.UseVisualStyleBackColor = True
+        '
+        'rbRobot1
+        '
+        Me.rbRobot1.AutoSize = True
+        Me.rbRobot1.Location = New System.Drawing.Point(35, 108)
+        Me.rbRobot1.Name = "rbRobot1"
+        Me.rbRobot1.Size = New System.Drawing.Size(76, 21)
+        Me.rbRobot1.TabIndex = 26
+        Me.rbRobot1.Text = "Robot1"
+        Me.rbRobot1.UseVisualStyleBackColor = True
         '
         'Label7
         '
@@ -288,46 +328,6 @@ Partial Class Form1
         Me.btnForward.TabIndex = 9
         Me.btnForward.Text = "Forward"
         Me.btnForward.UseVisualStyleBackColor = False
-        '
-        'rbRobot1
-        '
-        Me.rbRobot1.AutoSize = True
-        Me.rbRobot1.Location = New System.Drawing.Point(35, 108)
-        Me.rbRobot1.Name = "rbRobot1"
-        Me.rbRobot1.Size = New System.Drawing.Size(76, 21)
-        Me.rbRobot1.TabIndex = 26
-        Me.rbRobot1.Text = "Robot1"
-        Me.rbRobot1.UseVisualStyleBackColor = True
-        '
-        'rbRobot2
-        '
-        Me.rbRobot2.AutoSize = True
-        Me.rbRobot2.Location = New System.Drawing.Point(35, 146)
-        Me.rbRobot2.Name = "rbRobot2"
-        Me.rbRobot2.Size = New System.Drawing.Size(76, 21)
-        Me.rbRobot2.TabIndex = 27
-        Me.rbRobot2.Text = "Robot2"
-        Me.rbRobot2.UseVisualStyleBackColor = True
-        '
-        'rbRight
-        '
-        Me.rbRight.AutoSize = True
-        Me.rbRight.Location = New System.Drawing.Point(291, 108)
-        Me.rbRight.Name = "rbRight"
-        Me.rbRight.Size = New System.Drawing.Size(63, 21)
-        Me.rbRight.TabIndex = 28
-        Me.rbRight.Text = "Right"
-        Me.rbRight.UseVisualStyleBackColor = True
-        '
-        'rbLeft
-        '
-        Me.rbLeft.AutoSize = True
-        Me.rbLeft.Location = New System.Drawing.Point(291, 146)
-        Me.rbLeft.Name = "rbLeft"
-        Me.rbLeft.Size = New System.Drawing.Size(54, 21)
-        Me.rbLeft.TabIndex = 29
-        Me.rbLeft.Text = "Left"
-        Me.rbLeft.UseVisualStyleBackColor = True
         '
         'Form1
         '

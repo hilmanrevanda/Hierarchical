@@ -3,7 +3,8 @@
     Dim g As Graphics
     Dim last As Double = 0
     'belok
-    Public Deg As Integer = 0
+    Public Deg1 As Integer = 0
+    Public Deg2 As Integer = 0
 
     'baru
     Public Stack As New Stack
@@ -15,12 +16,7 @@
 
     'parts
     Public R1Arm1, R1RUArm1, R1RLArm1, R1RClaws1, R1RClaws11, R1RClaws12, R1Arm2, R1RUArm2, R1RLArm2, R1RClaws2, R1RClaws21, R1RClaws22 As Listof3DObject 'robot1
-    Public R2Arm1, R2RUArm1, R2RLArm1, R2RClaws1, R2RClaws11, R2RClaws12, R2Arm2, R2RUArm2, R2RLArm2, R2RClaws2, R2RClaws21, R2RClaws22 As Listof3DObject 'robot1
-
-    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
-
-    End Sub
-
+    Public R2Arm1, R2RUArm1, R2RLArm1, R2RClaws1, R2RClaws11, R2RClaws12, R2Arm2, R2RUArm2, R2RLArm2, R2RClaws2, R2RClaws21, R2RClaws22 As Listof3DObject 'robot2
 
     'Move
     Public StartX, StartY As Integer
@@ -96,7 +92,6 @@
         Move = True
         StartX = e.X
         StartY = e.Y
-
     End Sub
 
     Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
@@ -290,92 +285,22 @@
     End Sub
 
     Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
-        Dim a As Double = tbClaw.Value
-        If rbLeft.Checked Then
-            If rbRobot1.Checked Then
-                R1RClaws1.Rotate(-a, "y")
-            ElseIf rbRobot2.Checked Then
-                R2RClaws1.Rotate(-a, "y")
-            End If
-        ElseIf rbRight.Checked Then
-            If rbRobot1.Checked Then
-                R1RClaws2.Rotate(-a, "y")
-            ElseIf rbRobot2.Checked Then
-                R2RClaws2.Rotate(-a, "y")
-            End If
-        Else
-            MsgBox("Side not declsared")
-            tbClaw.Value = 0
-        End If
+        procMenu(tbClaw)
         Draw()
     End Sub
 
     Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
-        Dim a As Double = tbTweeze.Value
-
-        If rbLeft.Checked Then
-            If rbRobot1.Checked Then
-                R1RClaws11.Translateto(tbTweeze.Value / 100, "x")
-                R1RClaws12.Translateto(-tbTweeze.Value / 100, "x")
-            ElseIf rbRobot2.Checked Then
-                R2RClaws11.Translateto(tbTweeze.Value / 100, "x")
-                R2RClaws12.Translateto(-tbTweeze.Value / 100, "x")
-            End If
-        ElseIf rbRight.Checked Then
-            If rbRobot1.Checked Then
-                R1RClaws21.Translateto(tbTweeze.Value / 100, "x")
-                R1RClaws22.Translateto(-tbTweeze.Value / 100, "x")
-            ElseIf rbRobot2.Checked Then
-                R2RClaws21.Translateto(tbTweeze.Value / 100, "x")
-                R2RClaws22.Translateto(-tbTweeze.Value / 100, "x")
-            End If
-        Else
-            MsgBox("Side not declsared")
-            tbClaw.Value = 0
-        End If
+        procMenu(tbTweeze)
         Draw()
     End Sub
 
     Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
-        Dim a As Double = tbUnderArm.Value
-        If rbLeft.Checked Then
-            If rbRobot1.Checked Then
-                R1RLArm1.Rotate(-a, "x")
-            ElseIf rbRobot2.Checked Then
-                R2RLArm1.Rotate(-a, "x")
-            End If
-        ElseIf rbRight.Checked Then
-            If rbRobot1.Checked Then
-                R1RLArm2.Rotate(-a, "x")
-            ElseIf rbRobot2.Checked Then
-                R2RLArm2.Rotate(-a, "x")
-            End If
-        Else
-            MsgBox("Side not declsared")
-            tbUnderArm.Value = 0
-        End If
+        procMenu(tbUnderArm)
         Draw()
     End Sub
 
     Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
-        Dim a As Double = tbUpperArm.Value
-
-        If rbLeft.Checked Then
-            If rbRobot1.Checked Then
-                R1Arm1.Rotate(-a, "x")
-            ElseIf rbRobot2.Checked Then
-                R2Arm1.Rotate(-a, "x")
-            End If
-        ElseIf rbRight.Checked Then
-            If rbRobot1.Checked Then
-                R1Arm2.Rotate(-a, "x")
-            ElseIf rbRobot2.Checked Then
-                R2Arm2.Rotate(-a, "x")
-            End If
-        Else
-            MsgBox("Side not declsared")
-            tbUpperArm.Value = 0
-        End If
+        procMenu(tbUpperArm)
         Draw()
     End Sub
 
@@ -427,38 +352,117 @@
 
         'detect up arrow key
         If keyData = Keys.Up Then
-            Robot.Scale(0.1)
+            If rbRobot1.Checked Then
+                Robot.Scale(0.1)
+            End If
+            If rbRobot2.Checked Then
+                Robot2.Scale(0.1)
+            End If
             Draw()
             Return True
         End If
         'detect down arrow key
         If keyData = Keys.Down Then
-            Robot.Scale(-0.1)
+            If rbRobot1.Checked Then
+                Robot.Scale(-0.1)
+            End If
+            If rbRobot2.Checked Then
+                Robot2.Scale(-0.1)
+            End If
             Draw()
             Return True
         End If
         'detect left arrow key
         If keyData = Keys.Left Then
-            Deg = Deg - 1
-
-            Robot.Rotate(Deg, "y")
+            If rbRobot1.Checked Then
+                Deg1 = Deg1 - 1
+                Robot.Rotate(Deg1, "y")
+            End If
+            If rbRobot2.Checked Then
+                Deg2 = Deg2 - 1
+                Robot2.Rotate(Deg2, "y")
+            End If
             Draw()
             Return True
         End If
         'detect right arrow key
         If keyData = Keys.Right Then
-            Deg = Deg + 1
-
-            Robot.Rotate(Deg, "y")
+            If rbRobot1.Checked Then
+                Deg1 = Deg1 + 1
+                Robot.Rotate(Deg1, "y")
+            End If
+            If rbRobot2.Checked Then
+                Deg2 = Deg2 + 1
+                Robot2.Rotate(Deg2, "y")
+            End If
             Draw()
-            'Matrix(3, 0) = 0.1
-            'World.Transform = calc.MatrixMultiplication(Matrix, World.Transform)
-            'Draw()
             Return True
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
 
+    Sub procMenu(ByRef track As TrackBar)
+        Console.WriteLine(track.Name)
+        If rbLeft.Checked Then
+            If rbRobot1.Checked Then
+                'ROBOT1'
+                If track.Name = "tbUpperArm" Then
+                    R1Arm1.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbUnderArm" Then
+                    R1RLArm1.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbClaw" Then
+                    R1RClaws1.Rotate(-track.Value, "y")
+                ElseIf track.Name = "tbTweeze" Then
+                    R1RClaws11.Translateto(tbTweeze.Value / 100, "x")
+                    R1RClaws12.Translateto(-tbTweeze.Value / 100, "x")
+                End If
+            End If
+
+            If rbRobot2.Checked Then
+                'ROBOT2
+                If track.Name = "tbUpperArm" Then
+                    R2Arm1.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbUnderArm" Then
+                    R2RLArm1.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbClaw" Then
+                    R2RClaws1.Rotate(-track.Value, "y")
+                ElseIf track.Name = "tbTweeze" Then
+                    R2RClaws11.Translateto(tbTweeze.Value / 100, "x")
+                    R2RClaws12.Translateto(-tbTweeze.Value / 100, "x")
+                End If
+            End If
+        End If
+        If rbRight.Checked Then
+            If rbRobot1.Checked Then
+                If track.Name = "tbUpperArm" Then
+                    R1Arm2.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbUnderArm" Then
+                    R1RLArm2.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbClaw" Then
+                    R1RClaws2.Rotate(-track.Value, "y")
+                ElseIf track.Name = "tbTweeze" Then
+                    R1RClaws21.Translateto(tbTweeze.Value / 100, "x")
+                    R1RClaws22.Translateto(-tbTweeze.Value / 100, "x")
+                End If
+            End If
+            If rbRobot2.Checked Then
+                If track.Name = "tbUpperArm" Then
+                    R2Arm2.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbUnderArm" Then
+                    R2RLArm2.Rotate(-track.Value, "x")
+                ElseIf track.Name = "tbClaw" Then
+                    R2RClaws2.Rotate(-track.Value, "y")
+                ElseIf track.Name = "tbTweeze" Then
+                    R2RClaws21.Translateto(tbTweeze.Value / 100, "x")
+                    R2RClaws22.Translateto(-tbTweeze.Value / 100, "x")
+                End If
+            End If
+        End If
+        If Not rbLeft.Checked And Not rbRight.Checked Then
+            MsgBox("Side not declsared")
+            track.Value = 0
+        End If
+    End Sub
 End Class
 
 Public Class pnt 'point
