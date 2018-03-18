@@ -1,0 +1,284 @@
+commit 555b615263392db6803a062bff5bcfaa5264a422
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sun Mar 18 17:07:53 2018 +0700
+
+    -
+
+commit c719b336838be7649e1fb34b2c1593f9a523ef4c
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sun Mar 18 16:10:04 2018 +0700
+
+    rotate claws & tweeze claws by side
+
+commit 6f62095f86f20e7384bf4ef7b9181768a741bef8
+Merge: 2122ee1 c7a72ce
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sat Mar 17 20:12:37 2018 +0700
+
+    Merge branch 'master' of https://github.com/ichapredrika/Hierarchical
+
+commit 2122ee1d952e89665c9252ae0a247ad0a65221ef
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sat Mar 17 20:12:30 2018 +0700
+
+    righthand
+
+commit c7a72ce9948f9b9e8f0d75584b1cd1c7ae57add4
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Mar 17 19:03:58 2018 +0700
+
+    move button
+
+commit f6fdeb13ea9b01ad089a2350d7ca8b1904a53917
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sat Mar 17 12:58:33 2018 +0700
+
+    re-push
+
+commit b1e65a672c57fead2664d210464dd035ddaa2227
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sat Mar 17 12:54:39 2018 +0700
+
+    tweeze  claws fixed, cuma geser doag gak miring
+
+commit a35c052b6c9b4268178fb1890fd2186d8a70c462
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sat Mar 17 01:10:18 2018 +0700
+
+    rotate world by click and hold canvas
+
+commit 2ebc534abbc916569fe1316b8d16e97f3dc16061
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 23:43:26 2018 +0700
+
+    claws rotation fixed
+
+commit 9e4d13c2e2c4e70934b034d1e26ff9ae3a737ec7
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 22:21:50 2018 +0700
+
+    tweeze
+
+commit cf01690227611ea6e81a557363b8b233241c08fd
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Fri Mar 16 21:26:02 2018 +0700
+
+    claw
+
+commit 83280f0297b1c2ff45f894c46aa8f82065e9cb01
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 20:45:00 2018 +0700
+
+    edit rotation and create function
+
+commit 9b15cdfbbb2272198772892a500b78d98612186c
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 20:14:53 2018 +0700
+
+    up
+
+commit c01bfbf5f596cb93a36124326552cde2ef656480
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Fri Mar 16 20:11:47 2018 +0700
+
+    --
+
+commit 074c1c72eafb3877761bc9bac3c392d2d7f46a7c
+Merge: 6345a56 f7bf440
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 20:08:10 2018 +0700
+
+    merge
+
+commit 6345a569f4284c9e72edf343319bdb246f834905
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 20:05:43 2018 +0700
+
+    gerak perbagian
+
+commit f7bf440e2be42f6c29baaf6a9c2f7cbb1ec404b6
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Fri Mar 16 19:23:17 2018 +0700
+
+    -comment biar ga lupa
+
+commit c409a5b0d07bfbf8f4e07889b0d4b39442563fb0
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 14:14:12 2018 +0700
+
+    -
+
+commit da9cf2eef352ab7a15803cb1072d7d2102bda671
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Fri Mar 16 14:10:30 2018 +0700
+
+    ------------
+     fgdfhdh
+
+commit 2688fd6c0e8c2c2568a09e3f0368466c4c282624
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 13:41:41 2018 +0700
+
+    re- push
+
+commit 3bb5015d1aa403a2d459a902fef5c06a52511bbc
+Merge: 87ac142 3eb94ad
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 01:04:37 2018 +0700
+
+    Hierarchial, draw, stack,movement
+
+commit 87ac1429d4cf235ae3aed50db335032cbc84f06f
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Fri Mar 16 01:00:12 2018 +0700
+
+    -
+
+commit 3eb94ad180c2c4207dfb8c67132c4ebbb54f999c
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 15 14:44:07 2018 +0700
+
+    -
+
+commit 62b3c3b5d4f421e0d59d5b69ca21e51f4c37b814
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Mon Mar 12 23:30:19 2018 +0700
+
+    Hierarchical_modeling
+
+commit 5edb1a59f287ed2614be42423161da3b76510656
+Merge: 99d7271 e1050d9
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Mon Mar 12 14:48:07 2018 +0700
+
+    -
+
+commit 99d72713878991365706fd138327153a0317ffd3
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Mon Mar 12 13:47:22 2018 +0700
+
+    -
+
+commit e1050d90ced52392904359277b35ac949e846b41
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 12 12:54:18 2018 +0700
+
+    user interface
+
+commit b43027c827e916eba29a6e9c7b394f337c856d4f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 12 01:38:39 2018 +0700
+
+    create objects
+
+commit 044cf877277a908cdcd854aa2e43160c1ddb89c0
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Sun Mar 11 21:29:04 2018 +0700
+
+    multi box
+
+commit 4bc4e14b6b39367460b241b379fe5d3bc74fc93b
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sun Mar 11 21:19:09 2018 +0700
+
+    -
+
+commit b398d8fb10ddb180850e3b97f4c6cee9054981de
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 01:22:28 2018 +0700
+
+    -move forward, backward, stop (bugged)
+
+commit 06ac2b6a29e93e40a5bf9956626f3b071addfeb1
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:36:34 2018 +0700
+
+    - Change the front surface
+    - Change the rotation matrix (perspective)
+
+commit a44789b095d249c9e1b526338a6a1e3b6cda9b02
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:15:58 2018 +0700
+
+    rotate perspective on Y
+
+commit ed378a1ba0b99a57d2da95d25a48e564c9b4dd0f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Thu Mar 8 00:03:11 2018 +0700
+
+    Perspective view
+
+commit b531021604c98a48ff8077e20babc870d0ca7bc5
+Merge: 56bcefb e30f566
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Tue Mar 6 00:47:03 2018 +0700
+
+    Merge branch 'master' of https://github.com/ichapredrika/Hierarchical
+
+commit 56bcefb60dc523750c5225b018b594bd8329cd2b
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Tue Mar 6 00:46:53 2018 +0700
+
+    -
+
+commit e30f566c23569c6f961d56be9ba348f79f6b9657
+Merge: 218d93c b4b4552
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Tue Mar 6 00:41:21 2018 +0700
+
+    tst
+
+commit 218d93cdfee161a300ea5f22724b1f0885234ccd
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Tue Mar 6 00:39:20 2018 +0700
+
+    putar+geser pakai trackbar
+
+commit b4b4552731b189f431157626b5eb81432b65756f
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:42:33 2018 +0700
+
+    -
+
+commit 8fe7eb0f7868598b660322d07f7406d83ee8c6d0
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:41:40 2018 +0700
+
+    -
+
+commit 147af7cb710642d9fd9960111f79bc5e910ca1e6
+Merge: 40184e6 aaee961
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:41:30 2018 +0700
+
+    -
+
+commit 40184e6d82224d8aff6a39f8a2aee55ec7d43ca5
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Mon Mar 5 23:39:53 2018 +0700
+
+    -
+
+commit aaee961f6f1f2613b139c7feead39798523157d4
+Author: Teuku Atjeh <thilmanrevanda@gmail.com>
+Date:   Mon Mar 5 23:19:59 2018 +0700
+
+    Gambar kubus
+
+commit f96927a6d3ec7255fcca591c5edf7a17ae19d8d7
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Mar 3 12:23:11 2018 +0700
+
+    - Storing point, line, object,list of object as class
+
+commit b840a3bb579a1b1caaefb5fda5f323e816bbb5fe
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Feb 24 13:03:38 2018 +0700
+
+    Add project files.
+
+commit 2d424f3dd950f7a6031b1343e5a874758ccc8444
+Author: Predrika Br Ginting <ichapredrikagm@gmail.com>
+Date:   Sat Feb 24 13:03:35 2018 +0700
+
+    Add .gitignore and .gitattributes.
