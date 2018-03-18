@@ -89,34 +89,6 @@
         pbCanvas.Image = btp
     End Sub
 
-    Private Sub pbCanvas_MouseDown(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseDown
-        Move = True
-        StartX = e.X
-        StartY = e.Y
-    End Sub
-
-    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
-        Robot.Scale(0.1)
-        Draw()
-    End Sub
-
-    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
-        Robot.Scale(-0.1)
-        Draw()
-    End Sub
-
-    Private Sub pbCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseUp
-        Move = False
-    End Sub
-
-    Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
-        If Move Then
-            World.Rotate(StartX - e.X, "y")
-            World.Rotate(StartY - e.Y, "x")
-            Draw()
-        End If
-    End Sub
-
     Sub InitObject()
         'New(xmin As Double, ymin As Double, zmin As Double, xmax As Double, ymax As Double, zmax As Double)
         World = New Listof3DObject
@@ -285,26 +257,6 @@
         Robot2.Translateto(3, "x")
     End Sub
 
-    Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
-        procMenu(tbClaw)
-        Draw()
-    End Sub
-
-    Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
-        procMenu(tbTweeze)
-        Draw()
-    End Sub
-
-    Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
-        procMenu(tbUnderArm)
-        Draw()
-    End Sub
-
-    Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
-        procMenu(tbUpperArm)
-        Draw()
-    End Sub
-
     Sub InitValue()
         Dim vt1(3, 3), vt2(3, 3), st1(3, 3), st2(3, 3) As Double
 
@@ -401,6 +353,56 @@
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
+
+    Private Sub pbCanvas_MouseDown(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseDown
+        Move = True
+        StartX = e.X
+        StartY = e.Y
+    End Sub
+
+    Private Sub btnForward_Click(sender As Object, e As EventArgs) Handles btnForward.Click
+        Robot.Scale(0.1)
+        Robot2.Scale(0.1)
+        Draw()
+    End Sub
+
+    Private Sub btnBackward_Click(sender As Object, e As EventArgs) Handles btnBackward.Click
+        Robot.Scale(-0.1)
+        Robot2.Scale(-0.1)
+        Draw()
+    End Sub
+
+    Private Sub pbCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseUp
+        Move = False
+    End Sub
+
+    Private Sub pbCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles pbCanvas.MouseMove
+        If Move Then
+            World.Rotate(StartX - e.X, "y")
+            World.Rotate(StartY - e.Y, "x")
+            Draw()
+        End If
+    End Sub
+
+    Private Sub tbClaw_Scroll(sender As Object, e As EventArgs) Handles tbClaw.Scroll
+        procMenu(tbClaw)
+        Draw()
+    End Sub
+
+    Private Sub tbTweeze_Scroll(sender As Object, e As EventArgs) Handles tbTweeze.Scroll
+        procMenu(tbTweeze)
+        Draw()
+    End Sub
+
+    Private Sub tbUnderArm_Scroll(sender As Object, e As EventArgs) Handles tbUnderArm.Scroll
+        procMenu(tbUnderArm)
+        Draw()
+    End Sub
+
+    Private Sub tbUpperArm_Scroll(sender As Object, e As EventArgs) Handles tbUpperArm.Scroll
+        procMenu(tbUpperArm)
+        Draw()
+    End Sub
 
     Sub procMenu(ByRef track As TrackBar)
         Console.WriteLine(track.Name)
